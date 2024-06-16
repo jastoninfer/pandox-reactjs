@@ -1,0 +1,115 @@
+#ProfileContainer{
+    margin-top: 10vh;
+}
+
+/* #ProfileBar{
+    width: 100%;
+    height: 20em;
+    background-color: antiquewhite;
+} */
+
+#ProfileBarIcon{
+    background-color:lightpink;
+    width: 30em;
+    height: 100%;
+    display: flex;
+}
+
+.ProfileAvatarContainer {
+    /* height: 60%; */
+    /* border-radius: 50%; */
+    width: 12em;
+    height: 12em;
+    overflow: hidden;
+  }
+  
+  .ProfileAvatarContainer img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  #ProfileBarIconIntro{
+    background-color: azure;
+  }
+
+  #ProfileBarIconIntroUsername{
+    font-size: 2.5em;
+    font-weight: bold;
+    background-color: lightseagreen;
+  }
+
+  #ProfileBarIconIntroFollow{
+    background-color: beige;
+  }
+
+  #ProfileBarIconIntroFollower, #ProfileBarIconIntroFollowing{
+    font-size: 1.5em;
+  }
+
+  .ProfileFollowNum{
+    color: lightskyblue;
+  }
+
+  #ProfileBarIconIntroButton{
+    height: 3em;
+    width: 8em;
+    border-radius: .8em;
+    border: none;
+    background-color: lightsalmon;
+    font-size: 1em;
+    cursor: pointer;
+  }
+
+  #ProfileBarIconIntroButton:hover{
+    background-color: salmon;
+  }
+
+  #ProfileTab{
+    height: 4em;
+    background-color: lightgrey;
+    display: flex;
+    /* align-items: center; */
+  }
+
+  .ProfileTabItem{
+    color: black;
+    text-decoration: none;
+    background-color: lightcyan;
+    font-size: 1.5em;
+    margin-right: 1em;
+    /* height: 100%;
+    align-self: center;
+    justify-self: center; */
+    width: 4em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  #ProfileContent{
+    background-color: lightpink;
+  }
+
+  .BlogSnippetContainer{
+    background-color: blanchedalmond;
+    padding-bottom: 3em;
+    margin: 4px;
+    /* border-bottom: 2px grey solid; */
+  }
+
+  .BlogSnippetTitle{
+    font-weight: bold;
+    font-size: 1.3em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .BlogSnippetContent{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }

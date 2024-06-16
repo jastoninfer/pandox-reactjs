@@ -1,0 +1,18 @@
+
+  .markdown-editor {
+    border-radius: 5px;
+    min-height: 200px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    resize: none;
+    width: 100%;
+}
+
+.edit-title {
+    font-size: 1.3em;
+    border: none;
+    border-bottom: 1px solid gray;
+    padding: 5px;
+    outline: none;
+    display: block;
+}
