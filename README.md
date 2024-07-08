@@ -10,14 +10,16 @@
 
 ## Introduction
 
-Welcome to the Pandox Blog Platform frontend repository! This project is built with React.js and TypeScript, utilizing styled-components for styling. It provides functionalities for user authentication, blog management, commenting, and more.
+Welcome to [the Pandox Blog Platform](https://pandox-reactjs.vercel.app/) frontend repository! This project is built with React.js and TypeScript, utilizing styled-components for styling. It provides functionalities for user authentication, blog management, commenting, and more.
 
 ## Technologies Used
 
-- React.js: Frontend framework for building user interfaces.
-- TypeScript: Adds static typing to JavaScript for better developer experience and code quality.
-- styled-components: CSS-in-JS library for styling components with scoped styles.
-- Elasticsearch: Backend support for search functionality.
+## Technologies Used
+
+- [React.js](https://github.com/facebook/react): Frontend framework for building user interfaces.
+- [TypeScript](https://github.com/microsoft/TypeScript): Adds static typing to JavaScript for better developer experience and code quality.
+- [styled-components](https://github.com/styled-components/styled-components): CSS-in-JS library for styling components with scoped styles.
+- [Elasticsearch](https://github.com/elastic/elasticsearch): Backend support for search functionality.
 - MySQL: Database for storing blog and user information.
 - Redis: Database for managing user permissions.
 - WebSocket: Real-time messaging for user notifications.
