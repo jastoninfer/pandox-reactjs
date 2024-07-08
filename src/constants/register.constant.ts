@@ -1,0 +1,1 @@
+export const REGISTER_SUCCESS_COUNT_DOWN = 3;

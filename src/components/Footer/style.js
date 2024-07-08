@@ -25,16 +25,16 @@ export const Footer = styled.div`
         //     align-self: center;
         // }
     }
-    .footer-links{
+    .footer-links {
         // padding: .5em;
         // @media only screen and (max-width: ${theme.breakpoints.mobile}) {
         //     align-self: center;
         // }
         display: flex;
-        gap: .6em;
+        gap: 0.6em;
         font-size: 0.9em;
         span {
-            &:hover{
+            &:hover {
                 text-decoration: underline;
                 cursor: pointer;
             }

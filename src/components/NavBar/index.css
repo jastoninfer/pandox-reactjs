@@ -11,11 +11,3 @@ body.overlay-active {
     /* background-color: rgba(0, 0, 0, 0.5); */
     z-index: 100;
 }
-
-.search-user-header {
-    /* background-color: cadetblue; */
-}
-
-.search-page-header {
-    /* background-color: burlywood; */
-}
