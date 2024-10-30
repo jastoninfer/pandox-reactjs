@@ -8,11 +8,16 @@ declare module '*.ico' {
     export default value;
 }
 
+declare module '*.svg' {
+    const value: string;
+    export default value;
+}
+
 declare module 'marked-katex-extension' {
     interface MarkedKatexOptions {
         throwOnError?: boolean;
     }
-    function markedKatex(options?:MarkedKatexOptions): any;
+    function markedKatex(options?: MarkedKatexOptions): any;
     export default markedKatex;
 }
 

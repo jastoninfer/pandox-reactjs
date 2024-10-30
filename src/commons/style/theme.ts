@@ -15,6 +15,7 @@ const colors: Record<string, string> = {
     warning_red: '#db3737',
     green_blue: '#1cb2b8',
     green_blue_dark: '#179499',
+    love_red: '#FF4081',
 };
 
 const breakpoints: Record<string, string> = {

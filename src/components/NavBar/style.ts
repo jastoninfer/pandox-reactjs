@@ -1,18 +1,27 @@
 import styled from 'styled-components';
 import theme from '../../commons/style/theme';
 
+import { NavBarDisplayType, ScrollLevel } from 'enums/navbar.enum';
+
 interface NavBarProps {
-  scrolllevel: number;
-  displaytype: string|undefined;
+    displaytype: NavBarDisplayType | undefined;
+    logged_in: string;
 }
 
-export const NavBar = styled('div')<NavBarProps>(({scrolllevel, displaytype}) => (`
-  background-color: ${(scrolllevel == 1 || (displaytype && displaytype==='secondary') ? '#ffffff' : 'rgba(0,0,0,.05)')};
-  transition: background-color 0.3s ease, height 0.3s ease;
+export const NavBar = styled('div')<NavBarProps>(
+    ({ displaytype, logged_in }) => `
+  background-color: ${
+    displaytype !== NavBarDisplayType.SECONDARY && 'rgba(0,0,0,0)' || '#ffffff'
+  };
+  transition: background-color .7s ease, height .7s ease;
   position: fixed;
   top: 0;
-  height: ${(scrolllevel > 0 || displaytype && displaytype==='secondary' ? '8vh' : '10vh')};
-  border-bottom: ${(scrolllevel > 0 || (displaytype && displaytype==='secondary') ? '1.0px' : '0px')} solid #f0f0f0;
+  font-size: ${displaytype!==NavBarDisplayType.SECONDARY&&'1.1rem'||'1.0rem'};
+  height: ${
+    displaytype !== NavBarDisplayType.SECONDARY && '80px' || '60px'};
+  border-bottom: ${
+   displaytype !== NavBarDisplayType.SECONDARY && '0px' || '1.0px'
+  } solid #f0f0f0;
   width: 100%;
   display: flex;
   align-items: center;
@@ -21,14 +30,24 @@ export const NavBar = styled('div')<NavBarProps>(({scrolllevel, displaytype}) =>
     height: 80%;
     cursor: pointer;
     margin-left: 15px;
-    /* height: 30px; */
+    border-radius:30%;
+  }
+  .Nav-Bar-Extensions {
+    height: 100%;
+    flex-basis: 10rem;
+    // wdith: 10px;
+    flex-grow: 1;
+    // background-color: green;
   }
   #NavBarButtons {
+    flex-shrink: 0;
     margin-left: auto;
     height: 100%;
     display: flex;
     align-items: center;
+    color: ${displaytype !==NavBarDisplayType.SECONDARY && 'white' || 'black'};
   }
+
   .Nav-Bar-Button {
     position: relative;
     display: inline-flex;
@@ -40,15 +59,14 @@ export const NavBar = styled('div')<NavBarProps>(({scrolllevel, displaytype}) =>
   }
 
   .Nav-Bar-Button > .Login-Menu{
+    // z-index: 13;
     position: absolute;
     display: flex;
     flex-direction: column;
     font-size: 0.95em;
     gap: .3em;
-    // margin: 50px 22px;
-    //margin-top: 88px;
     top: calc(100% + 5px);
-    right: -5px;
+    right: 5px;
     background-color: ${theme.colors.grey_white};
     padding: 4px;
     padding-left: 10px;
@@ -61,17 +79,21 @@ export const NavBar = styled('div')<NavBarProps>(({scrolllevel, displaytype}) =>
       content: '';
       position: absolute;
       top: -6px;
-      right: 8px;
-      width: 0;
-      height: 0;
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
-      border-bottom: 8px solid ${theme.colors.grey_white};
+      right: 3px;
+      @media only screen and (min-width: ${theme.breakpoints.tablet}) {
+        right: ${logged_in==='true'&&'-2px' || 'calc(4rem - 5px)'};
+      }
       transform: translateX(-50%);
-      // box-sizing: border-box;
+
+      width: 10px;
+      height: 8px;
+      clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+      background-color: ${theme.colors.grey_white};
+      
     }
 
     .Login-Menu-Button{
+      // background-color: red;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -79,6 +101,9 @@ export const NavBar = styled('div')<NavBarProps>(({scrolllevel, displaytype}) =>
       // background-color: red;
       .Nav-Bar-Logout{
         // color: red;
+        &:hover{
+          color: ${theme.colors.warning_red}
+        }
       }
       // background-color: red;
       // margin-top: 10px;
@@ -86,15 +111,25 @@ export const NavBar = styled('div')<NavBarProps>(({scrolllevel, displaytype}) =>
         // font-weight: bold;
       }
       // border-top: 1px solid #f0f0f0;
-      z-index: 101;
+      z-index: 21;
       color: ${theme.colors.grey};
       div {
         width:100%;
         height: 35px;
         display: flex;
-        flex-direction: column;
+        // flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
+        gap: 1rem;
+        i{
+          flex-basis: 30%;
+          // margin-left: auto;
+          text-align: left;
+          padding-left: 2rem;
+          // background-color: green;
+          // align-self: center;
+          // justify-self:center;
+        }
         &:hover{
           background-color: #f0f0f0;
           color: ${theme.colors.black};
@@ -125,13 +160,40 @@ export const NavBar = styled('div')<NavBarProps>(({scrolllevel, displaytype}) =>
 
   .overlay-dark{
     background-color: rgba(0, 0, 0, 0.5);
+    // background-color: green;
   }
 
   .Nav-Bar-Icon {
     height: 80%;
   }
+
+  #Nav-Bar-Button-Signup{
+    i {
+      // background-color: green;
+      font-size: 1.1em;
+    }
+    @media only screen and (min-width: ${theme.breakpoints.tablet}) {
+      &:hover{
+        font-weight: bold;
+      }
+      &::after {
+        display: inline-block;
+        margin-left: 4px;
+        content: 'Sign up';
+        width: 4rem;
+        // background-color: green;
+        text-align: center;
+      }
+    }
+  }
   
   #Nav-Bar-Button-Search{
+    // font-size: 1.1rem;
+    i {
+      // background-color: green;
+      font-size: 1.1em;
+    }
+
     // color: ${theme.colors.dark_grey};
     &:hover{
       // background-color: rgba(191, 191, 191, .3);
@@ -141,15 +203,23 @@ export const NavBar = styled('div')<NavBarProps>(({scrolllevel, displaytype}) =>
     }
     @media only screen and (min-width: ${theme.breakpoints.tablet}) {
       &::after {
+        display: inline-block;
         margin-left: 4px;
         content: 'Search';
-        width: 3em;
+        width: 4rem;
+        // background-color: green;
+        text-align: center;
       }
     }
   }
 
   #Nav-Bar-Button-NewPage{
     // color: ${theme.colors.dark_grey};
+    // font-size: 1.1rem;
+    i {
+      // background-color: green;
+      font-size: 1.1em;
+    }
     &:hover{
       // background-color: rgba(191, 191, 191, .3);
       // font-size: 1.1em;
@@ -158,17 +228,13 @@ export const NavBar = styled('div')<NavBarProps>(({scrolllevel, displaytype}) =>
     }
     @media only screen and (min-width: ${theme.breakpoints.tablet}) {
       &::after {
+        display: inline-block;
         margin-left: 4px;
-        content: 'New Page';
-        width: 4.8em;
+        content: 'Write';
+        width: 3rem;
+        text-align: center;
+        // background-color: green;
       }
-    }
-  }
-
-  #Nav-Bar-Button-Signup{
-    // color: red;
-    &:hover{
-      font-weight: bold;
     }
   }
 
@@ -177,19 +243,20 @@ export const NavBar = styled('div')<NavBarProps>(({scrolllevel, displaytype}) =>
   }
 
   .Nav-Bar-Avatar-Container{
-    height: 90%;
+    height: 100%;
     aspect-ratio: 1/1;
     border-radius: 50%;
     overflow: hidden;
-    border: 1px solid ${theme.colors.clay_blue};
+    border: 1px solid ${theme.colors.burlywood};
     img {
       height: 100%;
       width: 100%;
       object-fit: cover;
     }
   }
-  z-index: 999;
-`));
+  z-index: 10;
+`
+);
 
 export const SearchBox = styled('div')`
     position: fixed;
@@ -198,8 +265,9 @@ export const SearchBox = styled('div')`
     left: 50%;
     width: 80vw;
     @media only screen and (min-width: ${theme.breakpoints.tablet}) {
-      width: 500px;
+        width: 650px;
     }
+    color: black;
     min-height: 300px;
     border-radius: 8px;
     background-color: ${theme.colors.floralwhite};
@@ -210,66 +278,74 @@ export const SearchBox = styled('div')`
     padding: 10px 15px;
     gap: 10px;
     div.input-search {
-      display: flex;
-      gap: .2em;
-      input {
-        // background-color: red;
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        height: 30px;
-        border: none;
-        border-bottom: 1px solid black;
-        font-size: 1.1em;
-        background-color: ${theme.colors.floralwhite};
-        &:focus {
-          outline: none;
-          border-bottom: 2px solid black;
+        display: flex;
+        gap: 0.2em;
+        input {
+            // background-color: red;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            height: 30px;
+            border: none;
+            border-bottom: .5px solid ${theme.colors.dark_grey};
+            font-size: 1.1em;
+            background-color: ${theme.colors.floralwhite};
+            &:focus {
+                outline: none;
+                border-bottom: 1px solid ${theme.colors.dark_grey};
+            }
         }
-      }
-      button {
-        // height: 2.5em;
-        min-width: 50px;
-        border: none;
-        background: none;
-        border-radius: 25px;
-        background-color: ${theme.colors.green_blue};
-        color: ${theme.colors.white};
-        &:hover {
-            cursor: pointer;
-            background-color: ${theme.colors.green_blue_dark};
+        button {
+            // height: 2.5em;
+            min-width: 60px;
+            border: none;
+            background: none;
+            border-radius: 15px;
+            padding: 0;
+            // border: 1px solid green;
+            // font-weight: bold;
+            // font-size: 1rem;
+            background-color: ${theme.colors.green_blue};
+            color: white;
+            height: 2rem;
+            &:hover {
+                cursor: pointer;
+                background-color: ${theme.colors.green_blue_dark};
+            }
         }
-      }
     }
     .search-suggestions {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      .search-suggestions-span {
-        // background-color: green;
-        font-style: italic;
-      }
-      .search-results-container{
         display: flex;
         flex-direction: column;
-        .search-user-header{
-          background-color: ${theme.colors.cadetblue};
+        gap: 5px;
+        .search-suggestions-span {
+            // background-color: green;
+            font-style: italic;
+            color: ${theme.colors.grey};
         }
-        .search-page-header{
-          background-color: ${theme.colors.burlywood};
+        .search-results-container {
+            display: flex;
+            color: ${theme.colors.dark_grey};
+            flex-direction: column;
+            .search-user-header {
+                background-color: ${theme.colors.cadetblue};
+            }
+            .search-page-header {
+                background-color: ${theme.colors.burlywood};
+            }
+            .search-page-header,
+            .search-user-header {
+                font-weight: bold;
+                color: ${theme.colors.grey_white};
+                padding: 3px;
+            }
+            .search-results-item {
+                padding: 2px;
+                cursor: pointer;
+                &:hover {
+                    background-color: ${theme.colors.border_grey};
+                }
+            }
         }
-        .search-page-header, .search-user-header {
-          font-weight: bold;
-          color: ${theme.colors.grey_white};
-          padding: 3px;
-        }
-        .search-results-item{
-          padding: 2px;
-          cursor: pointer;
-          &:hover{
-            background-color: ${theme.colors.border_grey};
-          }
-        }
-      }
     }
 `;

@@ -18,26 +18,35 @@ export const Header = styled.div`
     // font-weight: bold;
     text-align: left;
     align-items: center;
-    background-color: ${lightGrey};
+    // background-color: ${lightGrey};
     margin-top: 8vh;
-    // margin-bottom: 3vw;
-    // padding-left: 5vw;
-    // margin: 0vw 0vw 5vw 0vw;
+    
+
     @media only screen and (max-width: ${theme.breakpoints.mobile}) {
         font-size: 1.5em;
     }
 
     div {
         height: 100%;
-        background-color: white;
     }
 
     div > span {
         display: inline-block;
+        line-height:100%;
         height: 100%;
-        background-color: ${lightGrey};
+
         border-radius: 1em 1em 0 0;
-        padding: .5em;
+        padding: 0.5em;
+
+        // font-size: 60px;
+        font-weight: bold;
+        background: linear-gradient(45deg, ${theme.colors.cadetblue}, #179499, ${theme.colors.clay_blue});
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        // color:black;
+        // padding-bottom: 5px;
+        
     }
 
     &::before {
@@ -48,7 +57,7 @@ export const Header = styled.div`
         border-radius: 0 0 1em 0;
         // top-left, top-right, bottom-right, bottom-left
         // box-shadow: 0 0 0 .414em magenta;
-        overflow:hidden;
+        overflow: hidden;
     }
 
     &::after {
@@ -58,6 +67,26 @@ export const Header = styled.div`
         flex-grow: 1;
         border-radius: 0 0 0 1em;
     }
+`;
+
+export const ItemsMultiColContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    min-height: 200px;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 2em;
+`;
+
+export const ItemSingleColContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+    @media only screen and (max-width: ${theme.breakpoints.tablet}) {
+        flex-basis: 80%;
+    }
+    align-items: flex-start;
 `;
 
 export const ItemsContainer = styled.div`
@@ -73,59 +102,26 @@ export const ItemsContainer = styled.div`
     padding-left: 5vw;
     padding-right: 5vw;
     padding-bottom: 2em;
-    
-    // background:
-	// repeating-linear-gradient(
-	// 	45deg,
-	// 	transparent,
-	// 	transparent 2em,
-    //     rgba(255, 228, 181, 0.5) 0,
-    //     rgba(255, 228, 181, 0.5) 4em,
-	// 	transparent 0,
-	// 	transparent 5em,
-    //     rgba(173, 216, 230, 0.5) 0,
-    //     rgba(173, 216, 230, 0.5) 8em,
-	// 	transparent 0,
-	// 	transparent 9em,
-    //     rgba(230, 230, 250, 0.5) 0,
-    //     rgba(230, 230, 250, 0.5) 12em,
-	// ),
-	// // repeating-linear-gradient(
-	// // 	-45deg,
-	// // 	transparent,
-	// // 	transparent 1em,
-	// // 	khaki 0,
-	// // 	khaki 2em,
-	// // 	transparent 0,
-	// // 	transparent 3em,
-	// // 	beige 0,
-	// // 	beige 4em,
-	// // 	transparent 0,
-	// // 	transparent 5em,
-	// // 	peachpuff 0,
-	// // 	peachpuff 6em
-	// // ),
-    // whitesmoke;
-
-    // background-blend-mode: multiply;
 `;
 
 export const Item = styled.div`
     margin-top: 2em;
     // align-items: stretch;
     // height: 30vh;
-    // width: 47%;
-    padding: .5em;
-    gap: .3em;
-    width: 47%;
+    // width: 97%;
+    padding: 0.5em;
+    gap: 0.3em;
+    width: 94%;
     @media only screen and (max-width: ${theme.breakpoints.mobile}) {
         width: 97%;
     }
-    padding-left: .5em;
-    padding-right: .5em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
     // 这里使用媒体查询，更合适，当视口很窄时，最好展示一列而不是两列
     background-color: white;
-    border-radius: .5em;
+    // background-color:  rgba(71, 196, 237, 0.4);
+    // background-color:rgba(255, 127, 80, 0.3);
+    border-radius: 0.5em;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -137,16 +133,19 @@ export const ItemTitle = styled.a`
     text-overflow: ellipsis;
     // background-color: white;
     padding: 0.2em;
+    font-size: 1.2rem;
     font-weight: bold;
     // color: #4d4b4b;
     // text-align: left;
     // padding-left: 1em;
     align-self: left;
-    padding-left: .5em;
+    padding-left: 0.5em;
+    color: ${theme.colors.dark_grey};
 
     &:hover {
-        color: ${theme.colors.dark_grey};
+        color: black;
         cursor: pointer;
+        text-decoration: underline;
     }
 `;
 
@@ -155,11 +154,11 @@ export const ItemImagesContainer = styled.div`
     width: 100%;
     // max-width:100%;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     height: auto;
     margin-top: 10px;
-    margin-bottom: .3em;
+    margin-bottom: 0.3em;
     // max-height: 50px;
     gap: 3px;
     .item-single-image-container {
@@ -167,16 +166,27 @@ export const ItemImagesContainer = styled.div`
         &:nth-child(1) {
             flex: 40%;
         }
-        height: auto;
+        // height: auto;
+        max-height: 180px;
+        max-width: 97%;
+        text-align:center;
+        line-height: 100%;
         // object-fit: cover;
-        border-radius: 3px;
-        border: ${theme.colors.border_grey} solid .5px;
-        padding: 3px;
+        // border-radius: 50px;
+        border-radius: 6px;
+        // padding: 3px;
+        // background-color: grey;
+        // margin: 0 auto;
+        overflow: hidden;
         img {
             max-width: 100%;
-            // max-height: 100%;
-            max-height: 200px;
-            object-fit: cover;
+            // max-height: 520px;
+            position: relative;
+            // top: 50%;
+            // transform: translateY(-10%);
+            // height: auto;
+            object-fit: contain;
+            // object-position: center;
         }
     }
 `;
@@ -184,28 +194,33 @@ export const ItemImagesContainer = styled.div`
 export const ItemAuthorContainer = styled.div`
     display: flex;
     height: 1.6em;
-    padding-left: .5em;
+    padding-left: 0.5em;
     gap: 8px;
+    margin-top: .5rem;
     // margin-top: .3em;
     align-items: center;
     .item-author-avatar-container {
         border-radius: 50%;
-        height: 70%;
+        height: 80%;
         aspect-ratio: 1/1;
         overflow: hidden;
-        border: 1px solid ${theme.colors.clay_blue};
+        border: 1px solid ${theme.colors.burlywood};
         img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            &:hover{
+                cursor:pointer;
+            }
         }
     }
     span {
         display: inline-block;
-        font-size: .9em;
-        &:hover{
+        font-size: 0.9em;
+        &:hover {
             color: ${theme.colors.dark_grey};
             cursor: pointer;
+            text-decoration: underline;
         }
     }
 `;
@@ -214,13 +229,13 @@ export const ItemAuthor = styled.span`
     // background-color: yellow;
     // color: blue;
     text-align: left;
-    padding-left: .5em;
-    text-decoration: underline;
-    
+    padding-left: 0.5em;
+    text-decoration: none;
+
     &:hover {
         // color: ${lightBlue};
         font-weight: bold;
-        text-decoration: none;
+        text-decoration: underline;
         cursor: pointer;
     }
 `;
@@ -229,7 +244,7 @@ export const ItemContent = styled.div`
     display: -webkit-box;
     // background-color: white;
     flex-grow: 1;
-    -webkit-line-clamp: 6;
+    -webkit-line-clamp: 3;
     max-width: calc(100% - 5px);
     max-height: 7.2em;
     line-height: 1.2em;
@@ -237,7 +252,7 @@ export const ItemContent = styled.div`
     overflow: hidden;
     word-break: break-all;
     // margin-top: .3em;
-    padding-left: .5em;
+    padding-left: 0.5em;
     // padding-right: .5em;
     text-align: left;
     color: #302e2e;

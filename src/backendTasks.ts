@@ -8,14 +8,16 @@ const handleTokenCheck = () => {
     console.log('interval task..');
 };
 
-const useBackgroundTasks = () => {};
-//     const { sendJsonMessage, lastJsonMessage,
-//         readyState, getWebSocket } = useWebSocket(WS_URL, {
-//            share: true,
-//            onOpen: () => {
-//                console.info('Websocket connection established.');
-//            }
-//     });
+export const useBackgroundTasks = () => {
+    const { sendJsonMessage, lastJsonMessage,
+        readyState, getWebSocket } = useWebSocket(WS_URL as string, {
+           share: true,
+           onOpen: () => {
+               console.info('Websocket connection established.');
+           }
+    });
+};
+
 //     console.log('go...');
 
 //     useEffect(() => {

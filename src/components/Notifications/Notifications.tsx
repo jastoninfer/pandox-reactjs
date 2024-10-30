@@ -11,6 +11,7 @@ import React, { useEffect } from 'react';
 import NavBar from '../NavBar/NavBar';
 import Footer from '../Footer/Footer';
 
+import { NavBarDisplayType } from 'enums/navbar.enum';
 import type { _ReduxState, AuthState } from 'types/states';
 import * as S from './style';
 
@@ -51,7 +52,7 @@ const Notifications = () => {
     return (
         user && (
             <div>
-                <NavBar displaytype="secondary" />
+                <NavBar displaytype={NavBarDisplayType.SECONDARY} />
                 <S.NotificationsContainer>
                     <div className="notifications-left-container">
                         <div className="notifications-left-header">

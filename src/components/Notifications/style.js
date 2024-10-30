@@ -18,7 +18,8 @@ export const NotificationsContainer = styled.div`
             h1 {
                 display: inline-block;
                 font-size: 2.6em;
-                @media only screen and (max-width: ${theme.breakpoints.tablet}) {
+                @media only screen and (max-width: ${theme.breakpoints
+                        .tablet}) {
                     font-size: 1.6em;
                 }
             }
@@ -34,7 +35,7 @@ export const NotificationsContainer = styled.div`
                 display: inline-block;
                 color: ${theme.colors.grey};
                 text-decoration: none;
-                &:hover{
+                &:hover {
                     color: ${theme.colors.black};
                 }
                 &.active {
@@ -67,5 +68,4 @@ export const NotificationsContainer = styled.div`
             display: none;
         }
     }
-    
 `;

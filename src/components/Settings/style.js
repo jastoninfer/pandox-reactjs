@@ -22,7 +22,8 @@ export const SettingsContainer = styled.div`
             h1 {
                 display: inline-block;
                 font-size: 2.6em;
-                @media only screen and (max-width: ${theme.breakpoints.tablet}) {
+                @media only screen and (max-width: ${theme.breakpoints
+                        .tablet}) {
                     font-size: 1.6em;
                 }
             }
@@ -38,7 +39,7 @@ export const SettingsContainer = styled.div`
                 display: inline-block;
                 color: ${theme.colors.grey};
                 text-decoration: none;
-                &:hover{
+                &:hover {
                     color: ${theme.colors.black};
                 }
                 &.active {
@@ -60,7 +61,7 @@ export const SettingsContainer = styled.div`
         div.settings-account-container {
             display: flex;
             flex-direction: column;
-            gap: .8em;
+            gap: 0.8em;
             div.popup-window {
                 position: fixed;
                 z-index: 101;
@@ -68,8 +69,9 @@ export const SettingsContainer = styled.div`
                 left: 50%;
                 width: 80vw;
                 cursor: default;
-                font-size: .95em;
-                @media only screen and (min-width: ${theme.breakpoints.tablet}) {
+                font-size: 0.95em;
+                @media only screen and (min-width: ${theme.breakpoints
+                        .tablet}) {
                     width: 500px;
                 }
                 min-height: 300px;
@@ -92,11 +94,10 @@ export const SettingsContainer = styled.div`
                     // background-color: red;
                     display: flex;
                     flex-direction: column;
-                    gap: .5em;
+                    gap: 0.5em;
                     align-items: flex-start;
                     color: ${theme.colors.grey};
                     span {
-                        
                     }
                     div.popup-window-avatarrow-container {
                         width: 100%;
@@ -120,9 +121,9 @@ export const SettingsContainer = styled.div`
                             display: flex;
                             justify-content: space-evenly;
                             flex-direction: column;
-                            div.popup-window-avatarrow-right-btns-container{
+                            div.popup-window-avatarrow-right-btns-container {
                                 display: flex;
-                                gap: .5em;
+                                gap: 0.5em;
                                 span {
                                     &:hover {
                                         cursor: pointer;
@@ -137,7 +138,7 @@ export const SettingsContainer = styled.div`
                             }
                             div.popup-window-avatarrow-right-desc-container {
                             }
-                            
+
                             input.popup-window-avatar-uploadfile {
                                 display: none;
                                 color: green;
@@ -149,18 +150,18 @@ export const SettingsContainer = styled.div`
                     width: 100%;
                     display: flex;
                     flex-direction: column;
-                    gap: .5em;
+                    gap: 0.5em;
                     span {
-
                     }
                     textarea {
-                        height: 5em;
+                        font-size: .9rem;
+                        height: 5rem;
                         resize: none;
                         border: none;
-                        border-radius: .2em;
+                        border-radius: 0.2em;
                         background-color: ${theme.colors.border_grey};
                         padding: 10px;
-                        &:focus{
+                        &:focus {
                             background-color: ${theme.colors.grey_white};
                             outline: 1px solid ${theme.colors.black};
                         }
@@ -175,7 +176,7 @@ export const SettingsContainer = styled.div`
 
                 div.popup-window-bottom-container {
                     // background-color: blue;
-                    height: 3em;
+                    height: 2.5rem;
                     width: 100%;
                     display: flex;
                     flex-direction: column;
@@ -185,11 +186,11 @@ export const SettingsContainer = styled.div`
                         display: flex;
                         gap: 1em;
                         button {
-                            min-width: 5em;
-                            height: 2.5em;
+                            min-width: 5rem;
+                            height: 2.3rem;
                             border: none;
                             background: none;
-                            border-radius: 2em;
+                            border-radius: 2rem;
                             &:hover {
                                 cursor: pointer;
                             }
@@ -198,16 +199,17 @@ export const SettingsContainer = styled.div`
                                 color: ${theme.colors.clay_blue};
                             }
                             &.save {
+                                // font-size: 1rem;
                                 color: ${theme.colors.white};
                                 background-color: ${theme.colors.clay_blue};
                                 &:hover {
-                                    background-color: ${theme.colors.clay_blue_dark};
+                                    background-color: ${theme.colors
+                                        .clay_blue_dark};
                                 }
                             }
                         }
                     }
                 }
-
             }
 
             div.settings-accountitem-container {

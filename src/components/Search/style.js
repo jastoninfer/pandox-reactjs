@@ -22,7 +22,7 @@ export const SearchContainer = styled.div`
             padding-top: 1em;
             display: flex;
             flex-wrap: wrap;
-            gap: .5em;
+            gap: 0.5em;
             h1 {
                 max-width: 100%;
                 font-size: 1.5em;
@@ -49,7 +49,7 @@ export const SearchContainer = styled.div`
                 display: inline-block;
                 color: ${theme.colors.grey};
                 text-decoration: none;
-                &:hover{
+                &:hover {
                     color: ${theme.colors.black};
                 }
                 &.active {
@@ -78,7 +78,7 @@ export const SearchContainer = styled.div`
                 // justify-content: center;
                 padding-bottom: 1.5em;
                 gap: 1em;
-                div.search-pageitem-left-container{
+                div.search-pageitem-left-container {
                     flex: 1;
                     div.page-item-author-container {
                         display: flex;
@@ -102,7 +102,7 @@ export const SearchContainer = styled.div`
                         }
                         span {
                             cursor: pointer;
-                            font-size: .9em;
+                            font-size: 0.9em;
                             &:hover {
                                 text-decoration: underline;
                             }
@@ -115,9 +115,9 @@ export const SearchContainer = styled.div`
                         cursor: pointer;
                         font-size: 1.2em;
                         display: inline-block;
-                        margin-bottom: .3em;
+                        margin-bottom: 0.3em;
                     }
-    
+
                     div.page-item-content {
                         display: -webkit-box;
                         -webkit-line-clamp: 4;
@@ -131,8 +131,8 @@ export const SearchContainer = styled.div`
                         color: ${theme.colors.dark_grey};
                         cursor: pointer;
                     }
-                } 
-                div.search-pageitem-right-container{
+                }
+                div.search-pageitem-right-container {
                     // width: 50%;
                     // width: 50em;
                     // wdith: 30%;
@@ -141,10 +141,11 @@ export const SearchContainer = styled.div`
                     // max-height: 5em;
                     // max-height: 50%;
                     width: 30%;
-                    @media only screen and (max-width: ${theme.breakpoints.mobile}) {
+                    @media only screen and (max-width: ${theme.breakpoints
+                            .mobile}) {
                         width: 40%;
                     }
-                    padding: .6em;
+                    padding: 0.6em;
                     // background-color: ${theme.colors.clay_blue};
                     display: flex;
                     justify-content: center;
@@ -152,7 +153,7 @@ export const SearchContainer = styled.div`
                     margin-top: 2em;
                     align-self: flex-end;
                     border: 1px solid ${theme.colors.border_grey};
-                    border-radius: .3em;
+                    border-radius: 0.3em;
                     img {
                         // padding-top: 1em;
                         max-width: 100%;
@@ -172,8 +173,8 @@ export const SearchContainer = styled.div`
                 align-items: center;
                 gap: 1.3em;
                 height: 5em;
-                padding-bottom: .5em;
-                padding-top: .5em;
+                padding-bottom: 0.5em;
+                padding-top: 0.5em;
                 // background-color: ${theme.colors.floralwhite};
                 border-bottom: 1px solid ${theme.colors.border_grey};
                 div.search-useritem-avatar-container {
@@ -197,7 +198,7 @@ export const SearchContainer = styled.div`
                     // background-color: ${theme.colors.burlywood};
                     display: flex;
                     flex-direction: column;
-                    gap: .2em;
+                    gap: 0.2em;
                     span {
                         display: block;
                         cursor: pointer;

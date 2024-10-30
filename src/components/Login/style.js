@@ -16,7 +16,8 @@ export const LoginContainer = styled.div`
         display: flex;
         flex-direction: column;
         gap: 1em;
-        div.username-container,div.pwd-container {
+        div.username-container,
+        div.pwd-container {
             label {
                 display: inline-block;
                 width: 6em;
@@ -25,16 +26,16 @@ export const LoginContainer = styled.div`
                 font-weight: bold;
             }
             input {
-                height: 1.5em;
+                height: 1.5rem;
                 width: 12em;
                 border: none;
-                border-bottom: .5px solid ${theme.colors.dark_grey};
+                border-bottom: 0.5px solid ${theme.colors.dark_grey};
                 // border-radius: .1em;
                 outline: none;
                 &:focus {
-                    border-bottom: .5px solid transparent;
-                    border-radius: .2em;
-                    outline: 1px solid ${theme.colors.cadetblue};
+                    border-bottom: 1px solid ${theme.colors.dark_grey};
+                    // border-radius: 0.2em;
+                    // outline: 1px solid ${theme.colors.cadetblue};
                 }
             }
         }
@@ -46,20 +47,20 @@ export const LoginContainer = styled.div`
             align-self: center;
             border: none;
             cursor: pointer;
-            border-radius: .2em;
-            font-size: .9em;
+            border-radius: 0.2em;
+            font-size: 0.9em;
             color: ${theme.colors.grey_white};
             font-weight: bold;
-            background-color: ${theme.colors.clay_blue};
-            &:hover{
-                background-color: ${theme.colors.clay_blue_dark};
+            background-color: #e2912a;
+            &:hover {
+                background-color: #de8a1e;
             }
         }
     }
     div.alert-fail {
         // background-color: green;
-        font-size: .9em;
-        padding: .3em;
+        font-size: 0.9em;
+        padding: 0.3em;
         color: ${theme.colors.warning_red};
         // padding-left: 4em;
         // padding-right: 4em;

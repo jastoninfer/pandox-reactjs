@@ -1,7 +1,7 @@
 enum PageStatus {
     PUBLISHED = 'published',
     DRAFT = 'draft',
-    PRIVATE = 'private'
+    PRIVATE = 'private',
 }
 
-export {PageStatus};
+export { PageStatus };

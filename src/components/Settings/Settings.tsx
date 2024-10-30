@@ -14,6 +14,7 @@ import Footer from '../Footer/Footer';
 import { ImageService } from '../../services/data';
 import { updateProfile } from '../../actions/auth';
 
+import { NavBarDisplayType } from 'enums/navbar.enum';
 import type { AuthState, _ReduxState } from 'types/states';
 import type { A_Any } from 'types/actions';
 import * as S from './style';
@@ -255,7 +256,7 @@ const Settings = () => {
     return (
         user && (
             <div>
-                <NavBar displaytype="secondary" />
+                <NavBar displaytype={NavBarDisplayType.SECONDARY} />
                 <S.SettingsContainer>
                     <div className="settings-left-container">
                         <div className="profile-left-header">

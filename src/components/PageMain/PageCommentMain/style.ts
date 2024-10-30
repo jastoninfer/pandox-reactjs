@@ -7,17 +7,18 @@ export const BlogCommentBody = styled.div`
     border-top: ${theme.colors.border_grey} 1px solid;
     // padding: 20px;
     p {
-        padding-bottom: .5em;
+        padding-bottom: 0.5em;
     }
     padding-bottom: 2em;
 `;
 
-interface AvatarContainerProps{
+interface AvatarContainerProps {
     displaytype?: string;
 }
 
-export const AvatarContainer = styled('div')<AvatarContainerProps>(({displaytype})=>(`
-    width: ${displaytype==='subcomment' ? '20px':'25px'};
+export const AvatarContainer = styled('div')<AvatarContainerProps>(
+    ({ displaytype }) => `
+    width: ${displaytype === 'subcomment' ? '20px' : '25px'};
     aspect-ratio: 1/1;
     border-radius: 50%;
     overflow: hidden;
@@ -25,30 +26,42 @@ export const AvatarContainer = styled('div')<AvatarContainerProps>(({displaytype
         height: 100%;
         width: 100%;
         object-fit: cover;
+        &:hover{
+            cursor: pointer;
+        }
     }
     border: 1px solid ${theme.colors.clay_blue};
-`));
+`
+);
 
 export const BlogCommentItem = styled.div`
     border: 1px solid ${theme.colors.border_grey};
     display: flex;
     flex-direction: column;
-    margin-top: .5em;
-    padding-bottom: .3em;
-    border-radius: .3em;
+    margin-top: 0.5em;
+    padding-bottom: 0.3em;
+    border-radius: 0.3em;
     // background-color: lightgrey;
     .Blog-Comment-Item-Header {
         display: flex;
         align-items: center;
         background-color: ${theme.colors.floralwhite};
         // background: linear-gradient(to right,#d5f4fd, white);
-        padding: .5em;
+        padding: 0.5em;
         // padding-bottom: 0em;
         // margin-bottom: 0em;
         .Blog-Comment-Username {
             margin-left: 10px;
             // font-size: 14px;
             font-size: 0.9em;
+            &.Thread-Owner{
+                font-weight: bold;
+                color: ${theme.colors.dark_grey};
+            }
+            &:hover{
+                color: ${theme.colors.clay_blue};
+                cursor: pointer;
+            }
         }
     }
 
@@ -70,34 +83,27 @@ export const BlogCommentItem = styled.div`
         div.comment-tools-ops {
             display: inline-flex;
             // width: 400px;
-            gap: .6em;
+            gap: 1.0rem;
             margin-left: auto;
             // margin-right: 2em;
             justify-content: flex-end;
-            a.hide-replies{
-                &::before{
-                    content: "Hide replies";
-                    @media only screen and (max-width: ${theme.breakpoints.mobile}) {
-                        content: "Hide";
-                    }
-                }
-            }
-            a.view-replies{
-                &::before{
-                    content: "View replies";
-                    @media only screen and (max-width: ${theme.breakpoints.mobile}) {
-                        content: "View";
-                    }
-                }
-            }
-            a.delete-comment{
+            a {
                 &:hover{
+                    color: ${theme.colors.clay_blue};
+                }
+            }
+            a.hide-replies {
+            }
+            a.view-replies {
+            }
+            a.delete-comment {
+                &:hover {
                     color: ${theme.colors.warning_red};
                 }
             }
         }
-        
-        a:hover{
+
+        a:hover {
             cursor: pointer;
             color: ${theme.colors.black};
         }
@@ -112,22 +118,23 @@ export const BlogCommentItem = styled.div`
 `;
 
 interface ReplyBoxProps {
-    displaytype:string;
+    displaytype: string;
 }
 
-export const ReplyBox = styled('div')<ReplyBoxProps>(({displaytype}) => (`
+export const ReplyBox = styled('div')<ReplyBoxProps>(
+    ({ displaytype }) => `
     display: flex;
     margin-top: .3em;
     gap: .3em;
     flex-direction: column;
     font-size: 0.9em;
-    margin-left: ${(displaytype==='subcomment'? '24px': '0px')};
+    margin-left: ${displaytype === 'subcomment' ? '24px' : '0px'};
     width: 76%;
     @media only screen and (max-width: ${theme.breakpoints.mobile}) {
-        width: calc(100% - ${(displaytype==='subcomment'? '24px': '0px')});
+        width: calc(100% - ${displaytype === 'subcomment' ? '24px' : '0px'});
     }
     textarea{
-        height: ${(displaytype==='subcomment'? '5em': '10em')};
+        height: ${displaytype === 'subcomment' ? '5em' : '10em'};
         overflow: scroll;
         border: .5px solid ${theme.colors.dark_grey};
         border-radius: 0.2em;
@@ -136,12 +143,15 @@ export const ReplyBox = styled('div')<ReplyBoxProps>(({displaytype}) => (`
         &:focus{
             outline: none;
         }
+        padding: .5rem;
     }
     div.reply-box-ops {
         display: flex;
         justify-content: flex-end;
-        gap: .3em;
+        gap: .5rem;
         button {
+            height: 1.2rem;
+            width: 2rem;
             background-color: transparent;
             border: .5px solid ${theme.colors.dark_grey};
             border-radius: .2em;
@@ -152,20 +162,19 @@ export const ReplyBox = styled('div')<ReplyBoxProps>(({displaytype}) => (`
             }
         }
         button.reply-box-cancel{
-            &::before{
-                content: "Cancel";
-            }
-            &:hover{
-                // color: ${theme.colors.clay_blue};
-            }
+            // &::before{
+            //     content: "Cancel";
+            // }
         }
         button.reply-box-submit{
-            &::before{
-                content: "Submit";
-            }
+            // &::before{
+            //     content: "Submit";
+            // }
+            color: ${theme.colors.green_blue};
         }
     }
-`));
+`
+);
 
 export const BlogSubCommentItem = styled.div`
     // background-color: lightblue;
@@ -178,7 +187,7 @@ export const BlogSubCommentItem = styled.div`
             color: ${theme.colors.grey};
         }
     }
-    >.comment-tools{
+    > .comment-tools {
         margin-left: 24px;
     }
 `;
@@ -187,23 +196,30 @@ interface BlogCommentItemContentProps {
     displaytype: string;
 }
 
-export const BlogCommentItemContent = styled('div')<BlogCommentItemContentProps>(({displaytype})=>(`
+export const BlogCommentItemContent = styled(
+    'div'
+)<BlogCommentItemContentProps>(
+    ({ displaytype }) => `
     // background-color: aquamarine;
     // font-size: 14px;
     font-size: 0.9em;
     text-align: left;
-    margin-left: ${(displaytype==='subcomment' ? '24px' : '0px')};
-    padding-top: ${(displaytype==='subcomment' ? '0' : '.8em')};
-`));
+    margin-left: ${displaytype === 'subcomment' ? '24px' : '0px'};
+    padding-top: ${displaytype === 'subcomment' ? '0' : '.8em'};
+`
+);
 
 interface PageCommentPaginationBarContainerProps {
-    displaytype: string|undefined;
+    displaytype: string | undefined;
 }
 
-export const PageCommentPaginationBarContainer = styled('div')<PageCommentPaginationBarContainerProps>(({displaytype})=>(`
+export const PageCommentPaginationBarContainer = styled(
+    'div'
+)<PageCommentPaginationBarContainerProps>(
+    ({ displaytype }) => `
     margin-top: 2em;
     display: flex;
-    margin-left: ${(displaytype==='subcomment' ? '24px' : '0px')};
+    margin-left: ${displaytype === 'subcomment' ? '24px' : '0px'};
     // background-color: antiquewhite;
     color: ${theme.colors.black};
     font-size: .9em;
@@ -270,4 +286,5 @@ export const PageCommentPaginationBarContainer = styled('div')<PageCommentPagina
             }
         }
     }
-`));
+`
+);

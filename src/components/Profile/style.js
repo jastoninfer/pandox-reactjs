@@ -8,7 +8,7 @@ export const ProfileContainer = styled.div`
     // padding-top: 3em;
     // min-height: 70vh;
     // height: 100vh;
-    div.profile-error-container{
+    div.profile-error-container {
         min-height: 70vh;
         padding-top: 3em;
         padding-left: 1.5em;
@@ -44,21 +44,23 @@ export const ProfileContainer = styled.div`
                 height: 3em;
                 aspect-ratio: 1/1;
                 overflow: hidden;
-                border: 1px solid ${theme.colors.clay_blue};
+                border: 1px solid ${theme.colors.burlywood};
                 img {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
                     cursor: pointer;
                 }
-                @media only screen and (min-width: ${theme.breakpoints.tablet}) {
+                @media only screen and (min-width: ${theme.breakpoints
+                        .tablet}) {
                     display: none;
                 }
             }
             h1 {
                 display: inline-block;
                 font-size: 2.6em;
-                @media only screen and (max-width: ${theme.breakpoints.tablet}) {
+                @media only screen and (max-width: ${theme.breakpoints
+                        .tablet}) {
                     font-size: 1.6em;
                 }
             }
@@ -74,7 +76,7 @@ export const ProfileContainer = styled.div`
                 display: inline-block;
                 color: ${theme.colors.grey};
                 text-decoration: none;
-                &:hover{
+                &:hover {
                     color: ${theme.colors.black};
                 }
                 &.active {
@@ -99,23 +101,25 @@ export const ProfileContainer = styled.div`
                 gap: 1.3em;
                 border-bottom: 1px solid ${theme.colors.border_grey};
                 // height: 5em;
-                padding-top: .5em;
+                padding-top: 0.5em;
                 padding-bottom: 1.5em;
                 div.profile-blogitem-left-container {
                     flex: 1;
                     div.blogitem-author-container {
                         display: flex;
-                        height: 1.6em;
+                        height: 3.6em;
+                        // background-color: red;
                         gap: 8px;
                         align-items: center;
                         padding-bottom: 1em;
                         padding-top: 1em;
                         div.blogitem-avatar-container {
+                            background-color: green;
                             border-radius: 50%;
-                            height: 70%;
+                            height: 80%;
                             aspect-ratio: 1/1;
                             overflow: hidden;
-                            border: 1px solid ${theme.colors.clay_blue};
+                            border: 1px solid ${theme.colors.burlywood};
                             img {
                                 width: 100%;
                                 height: 100%;
@@ -125,26 +129,27 @@ export const ProfileContainer = styled.div`
                         }
                         span {
                             cursor: pointer;
-                            font-size: .9em;
+                            font-size: 0.9rem;
                             &:hover {
                                 text-decoration: underline;
+                                color: ${theme.colors.dark_grey};
                             }
                         }
                     }
                     div.blogitem-title-container {
                         display: flex;
                         align-items: center;
-                        gap: .6em;
-                        margin-bottom: .3em;
+                        gap: 0.6em;
+                        margin-bottom: 0.3em;
                         span {
                             display: inline-block;
                             // color: red;
                             font-size: 0.8em;
                             background-color: ${theme.colors.clay_blue};
-                            border-radius: .2em;
-                            padding: .2em;
-                            padding-left: .3em;
-                            padding-right: .3em;
+                            border-radius: 0.2em;
+                            padding: 0.2em;
+                            padding-left: 0.3em;
+                            padding-right: 0.3em;
                             color: ${theme.colors.white};
                             &.published {
                                 background-color: ${theme.colors.burlywood};
@@ -152,6 +157,7 @@ export const ProfileContainer = styled.div`
                             &.draft {
                                 background-color: ${theme.colors.grey};
                             }
+                            // align-self: flex-start;
                         }
                         a {
                             overflow: hidden;
@@ -166,7 +172,7 @@ export const ProfileContainer = styled.div`
                         // width: 100%;
                         // box-sizing: border-box;
                         display: -webkit-box;
-                        -webkit-line-clamp: 4;
+                        -webkit-line-clamp: 2;
                         max-height: 4.8em;
                         line-height: 1.2em;
                         -webkit-box-orient: vertical;
@@ -178,24 +184,29 @@ export const ProfileContainer = styled.div`
                         cursor: pointer;
                     }
                 }
-                div.profile-blogitem-right-container{
+                div.profile-blogitem-right-container {
                     display: flex;
                     // width: 30%;
                     width: 30%;
-                    @media only screen and (max-width: ${theme.breakpoints.mobile}) {
+                    @media only screen and (max-width: ${theme.breakpoints
+                            .mobile}) {
                         width: 40%;
                     }
                     justify-content: center;
                     align-items: center;
                     align-self: flex-end;
                     margin-top: 2em;
-                    border: 1px solid ${theme.colors.border_grey};
-                    border-radius: .3em;
-                    padding: .6em;
+                    // border: 1px solid ${theme.colors.border_grey};
+                    border-radius: 0.3em;
+                    padding: 0.6em;
+                    overflow: hidden;
+                    max-height: 150px;
                     img {
                         max-width: 100%;
                         height: auto;
                         object-fit: cover;
+                        object-position: center;
+                        // max-height: 50px;
                     }
                 }
             }
@@ -223,7 +234,7 @@ export const ProfileContainer = styled.div`
             width: 30%;
             aspect-ratio: 1/1;
             overflow: hidden;
-            border: 1px solid ${theme.colors.clay_blue};
+            border: 2px solid ${theme.colors.burlywood};
             img {
                 width: 100%;
                 height: 100%;
@@ -243,7 +254,7 @@ export const ProfileContainer = styled.div`
             margin-top: 1em;
             cursor: pointer;
             color: ${theme.colors.cadetblue};
-            font-size: .9em;
+            font-size: 0.9em;
             &:hover {
                 color: ${theme.colors.dark_grey};
             }

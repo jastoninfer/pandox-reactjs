@@ -1,0 +1,59 @@
+/* .Blog-Comment-Item{
+    background-color: lightgrey;
+} */
+.Blog-Comment-Item-Body{
+    background-color:bisque;
+}
+
+.Blog-Sub-Comment-Item{
+    background-color: lightblue;
+
+}
+
+.Blog-Comment-Item-Content{
+    background-color: aquamarine;
+}
+
+#PageCommentPaginationBarContainer{
+    /* width: 100px; */
+    margin-top: 2em;
+    background-color: antiquewhite;
+    /* height: 200px; */
+    display: flex;
+    /* flex-direction: column; */
+    /* max-width: 23em; */
+    /* max-width: 25em; */
+}
+
+#PageCommentPaginationBarContainer #index_container{
+    /* flex-grow: 1; */
+    /* max-width: 10em; */
+    background-color: aliceblue;
+    display: flex;
+    flex-wrap: nowrap;
+    /* overflow: auto; */
+    overflow: hidden;
+    /* justify-content: space-around; */
+}
+
+#PageCommentPaginationBarContainer span{
+    display: inline-block;
+    overflow-wrap: break-word;
+    border: 1px black solid;
+    margin-left: .2em;
+    padding: .3em .5em .3em .5em;
+    line-height: 1em;
+    cursor: pointer;
+}
+
+#PageCommentPaginationBarContainer span.selected{
+    border: none;
+    font-weight: bold;
+    background-color: coral;
+}
+
+#PageCommentPaginationBarContainer span.index{
+    /* border: none; */
+    /* font-weight: bold; */
+    background-color: cornflowerblue;
+}

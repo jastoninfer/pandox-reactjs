@@ -1,3 +1,11 @@
+p{
+    /* padding: .2rem; */
+    /* font-family: "Computer Modern Serif", serif; */
+}
+.BlogContentContainer {
+    font-family: "Computer Modern Serif", serif;
+}
+
 img.resized {
     max-width: 80vw;
     display: block;
@@ -8,7 +16,7 @@ img.resized {
     /* border: #d5f4fd solid 2px; */
 }
 
-code.codespan {
+.BlogContentContainer code.codespan {
     background-color: #cecdcd;
     background-color: #e6e6e6;
     background-color: #f5f4f4;
@@ -26,27 +34,29 @@ code.codespan {
     /* box-shadow: 0 0 0 .1em #f5f4f4; */
 }
 
-pre code.hljs {
+.BlogContentContainer pre code.hljs {
     font-family: 'Monaco';
     /* background-color: #f2ecd4; */
     /* background-color: rgb(162, 153, 157); */
     /* background-color: #d3f0f9; */
-    font-size: .9em;
+    font-size: .9rem;
     max-height: 25em;
     overflow-y: auto;
     overflow-x: auto;
     border-radius: .3em;
-    max-width: 85%;
+    max-width: 90%;
+    /* margin-left: auto; */
+    margin-right: auto;
     /* background-color: rgb(247, 247, 247); */
-    /* border: #8a8a8a 1px solid; */
-    box-shadow: 0 0 .2em .05em rgb(137, 137, 137);
+    border: #8a8a8a .5px solid;
+    /* box-shadow: 0 0 .2em .05em rgb(137, 137, 137); */
     /*box-shadow:  [h-shadow] [v-shadow] [blur] [color] {inset}*/
     span.hljs-title{
         font-weight: bold;
     }
 }
 
-blockquote {
+.BlogContentContainer blockquote {
     font-style: italic;
     /* background-color: #d5f4fd; */
     /* border-color: #d5f4fd; */
@@ -59,12 +69,14 @@ blockquote {
     border-radius: .7em;
     padding: .7em;
     line-height: 1.5em;
-    background: linear-gradient(to right, rgb(246, 244, 244), #d5f4fd);
+    /* background: linear-gradient(to right, rgb(246, 244, 244), #d5f4fd);
     background: linear-gradient(to right,#d5f4fd, white);
     background: linear-gradient(to bottom,#d5f4fd, white);
     background: linear-gradient(to bottom right, white, #d5f4fd);
-    background: linear-gradient(to top left, white, #e4f9ff);
+    background: linear-gradient(to top left, white, #e4f9ff); */
     color: rgb(62, 62, 62);
+    border: 1px darkgrey solid;
+    /* font-family: "Computer Modern Serif", serif !important; */
     /* color: rgb(34, 184, 243); */
     /* color:gray; */
     /* background-color: aliceblue; */

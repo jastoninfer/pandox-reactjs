@@ -17,8 +17,10 @@ export const RegisterContainer = styled.div`
         display: flex;
         flex-direction: column;
         gap: 1em;
-        div.username-container, div.email-container, div.pwd-container,
-        div.pwd-confirm-container{
+        div.username-container,
+        div.email-container,
+        div.pwd-container,
+        div.pwd-confirm-container {
             label {
                 display: inline-block;
                 width: 7em;
@@ -30,12 +32,12 @@ export const RegisterContainer = styled.div`
                 height: 1.5em;
                 width: 15em;
                 border: none;
-                border-bottom: .5px solid ${theme.colors.dark_grey};
+                border-bottom: 0.5px solid ${theme.colors.dark_grey};
                 // border-radius: .1em;
                 outline: none;
                 &:focus {
-                    border-bottom: .5px solid transparent;
-                    border-radius: .2em;
+                    border-bottom: 0.5px solid transparent;
+                    border-radius: 0.2em;
                     outline: 1px solid ${theme.colors.cadetblue};
                 }
             }
@@ -47,20 +49,21 @@ export const RegisterContainer = styled.div`
             align-self: center;
             border: none;
             cursor: pointer;
-            border-radius: .2em;
-            font-size: .9em;
+            border-radius: 0.2em;
+            font-size: 0.9em;
             color: ${theme.colors.grey_white};
             font-weight: bold;
             background-color: ${theme.colors.clay_blue};
-            &:hover{
+            &:hover {
                 background-color: ${theme.colors.clay_blue_dark};
             }
         }
     }
-    div.alert-success, div.alert-fail {
+    div.alert-success,
+    div.alert-fail {
         // background-color: green;
-        font-size: .9em;
-        padding: .3em;
+        font-size: 0.9em;
+        padding: 0.3em;
         // padding-left: 4em;
         // padding-right: 4em;
         // width: 100%;

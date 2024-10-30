@@ -60,16 +60,50 @@ const Item: React.FC<ItemProps> = ({
     );
 };
 
-const Recommend = () => {
+interface RecommendProps {
+    cols?: number;
+}
+
+const Recommend:React.FC<RecommendProps> = ({cols=2}) => {
     const [recommendPages, setRecommendPages] = useState<
-        PageRecommendResData[]
+        PageRecommendResData[][]
     >([]);
+    const orderRecommendPages = (pages: PageRecommendResData[]) => {
+        const pagesWithImgs = pages.filter((page, index) => {
+            return page.imageUrls.length > 0;
+        });
+        const pagesWithoutImgs = pages.filter((page, index) => {
+            return page.imageUrls.length == 0;
+        });
+        const groupedRecommendPages = new Array<PageRecommendResData[]>(cols);
+        groupedRecommendPages.fill([]).forEach((_, index) => {
+            groupedRecommendPages[index] = new Array<PageRecommendResData>;
+        });
+        // console.log(groupedRecommendPages);
+        // console.log(pagesWithoutImgs);
+        // console.log(pagesWithImgs);
+        pagesWithoutImgs.reduce((acc, page, index) => {
+            acc[index % cols].push(page);
+            // console.log('index is ', index);
+            // console.log('target idx is ', index % cols);
+            return acc;
+        }, groupedRecommendPages);
+        // console.log('0', groupedRecommendPages[0].map((value, index)=>(value.id)));
+        // console.log('1', groupedRecommendPages[1].map((value, index)=>(value.id)));
+        pagesWithImgs.reduce((acc, page, index) => {
+            acc[cols-1-index%cols].push(page);
+            return acc;
+        }, groupedRecommendPages);
+        console.log(groupedRecommendPages);
+        return groupedRecommendPages;
+    };
+
     useEffect(() => {
         const getRecommendedPosts = async () => {
             try {
                 const data: PageRecommendResData[] =
                     await PageService.getRecommendedPages();
-                setRecommendPages(data);
+                setRecommendPages(orderRecommendPages(data));
             } catch (err: any) {
                 console.log(err.message || 'Error occurred.');
             }
@@ -81,10 +115,39 @@ const Recommend = () => {
         <S.StyledRecommend>
             <S.Header>
                 <div>
-                    <span>Recommended posts for you</span>
+                    <span>Recommended for you</span>
                 </div>
             </S.Header>
-            <S.ItemsContainer>
+            <S.ItemsMultiColContainer>
+                {recommendPages && recommendPages.map((pages, index) => (
+                    <S.ItemSingleColContainer key={index}>
+                        {pages && pages.map((page, index) => (
+                            <Item
+                                key={index}
+                                pageId={page.id}
+                                title={page.title}
+                                author={{ name: page.author, avatar: page.avatar }}
+                                content={page.content.slice(0, 500)}
+                                images={page.imageUrls}
+                            />
+                        ))}
+                    </S.ItemSingleColContainer>
+                ))}
+                {/* <S.ItemSingleColContainer>
+                    {recommendPages &&
+                        recommendPages.map((page, index) => (
+                            <Item
+                                key={index}
+                                pageId={page.id}
+                                title={page.title}
+                                author={{ name: page.author, avatar: page.avatar }}
+                                content={page.content.slice(0, 500)}
+                                images={page.imageUrls}
+                            />
+                        ))}
+                </S.ItemSingleColContainer> */}
+            </S.ItemsMultiColContainer>
+            {/* <S.ItemsContainer>
                 {recommendPages &&
                     recommendPages.map((page, index) => (
                         <Item
@@ -96,7 +159,7 @@ const Recommend = () => {
                             images={page.imageUrls}
                         />
                     ))}
-            </S.ItemsContainer>
+            </S.ItemsContainer> */}
         </S.StyledRecommend>
     );
 };

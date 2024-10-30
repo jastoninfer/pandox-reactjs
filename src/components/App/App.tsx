@@ -18,25 +18,41 @@ import { SettingsAccount } from '../Settings/Settings';
 import Notifications from '../Notifications/Notifications';
 import { NotificationsResponses } from '../Notifications/Notifications';
 import { SearchPages, SearchUsers } from '../Search/Search';
+import { useCallback, useEffect, useState } from 'react';
 
 import '../../index.css';
 import 'katex/dist/katex.css';
 
-// import { useBackgroundTasks } from '../../backendTasks';
+import { useBackgroundTasks } from '../../backendTasks';
+
+// export const __handleOverlayClick = () => {
+//     // disable overlay
+//     // setShowSearchBox(false);
+//     document.body.classList.remove('overlay-active');
+// }
 
 const App = () => {
-    // useBackgroundTasks();
+    useBackgroundTasks();
+
+    // const [navExt, setNavExt] = useState(null);
+
+    // useEffect(() => {
+    //     console.log(navExt);
+    // }, [navExt]);
+
     return (
         <div className="App">
+            {/* <div className="overlay overlay-dark"/> */}
+            {/* </div> */}
             <Routes>
-                <Route index element={<PageIntro />}/>
+                <Route index element={<PageIntro />} />
                 <Route path="me" element={<Me />}></Route>
                 <Route path="me/settings" element={<Settings />}>
                     <Route
                         path=""
                         element={<SettingsAccount parentMatch="" />}
                     />
-                    <Route path="account" element={<SettingsAccount />}/>
+                    <Route path="account" element={<SettingsAccount />} />
                 </Route>
                 <Route path="me/notifications" element={<Notifications />}>
                     <Route
@@ -49,17 +65,14 @@ const App = () => {
                     />
                 </Route>
                 <Route path="users/:username" element={<Profile />}>
-                    <Route
-                        path=""
-                        element={<ProfileAbout parentMatch="" />}
-                    />
-                    <Route path="about" element={<ProfileAbout />}/>
-                    <Route path="blogs" element={<ProfileBlogs />}/>
+                    <Route path="" element={<ProfileAbout parentMatch="" />} />
+                    <Route path="about" element={<ProfileAbout />} />
+                    <Route path="blogs" element={<ProfileBlogs />} />
                 </Route>
                 <Route path="register" element={<Register />} />
                 <Route path="login" element={<Login />} />
                 <Route path="pages/:wildcard/:pageId" element={<PageMain />} />
-                <Route path="p/:pageId/edit" element={<NewPageEdit />}>
+                <Route path="p/:pageId/edit" element={<NewPageEdit/>}>
                     <Route
                         path=""
                         element={<PageEditTabContentEditor parentMatch="" />}
@@ -73,7 +86,7 @@ const App = () => {
                         element={<PageEditTabContentPreviewer />}
                     />
                 </Route>
-                <Route path="new_page" element={<NewPageEdit />}>
+                <Route path="new_page" element={<NewPageEdit/>}>
                     <Route
                         path=""
                         element={<PageEditTabContentEditor parentMatch="" />}
@@ -88,12 +101,9 @@ const App = () => {
                     />
                 </Route>
                 <Route path="search/:searchTerm" element={<Search />}>
-                    <Route
-                        path=""
-                        element={<SearchPages parentMatch="" />}
-                    />
-                    <Route path="pages" element={<SearchPages />}/>
-                    <Route path="users" element={<SearchUsers />}/>
+                    <Route path="" element={<SearchPages parentMatch="" />} />
+                    <Route path="pages" element={<SearchPages />} />
+                    <Route path="users" element={<SearchUsers />} />
                 </Route>
                 <Route path="*" element={<span>404 Not found.</span>} />
             </Routes>

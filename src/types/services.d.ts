@@ -1,6 +1,6 @@
-import { AxiosResponse } from "axios";
+import { AxiosResponse } from 'axios';
 
-import type { User_w_Token } from "./user";
+import type { User_w_Token } from './user';
 
 export interface _MessageResData {
     message: string;

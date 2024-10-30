@@ -1,0 +1,59 @@
+import styled from 'styled-components';
+import theme from '../../commons/style/theme';
+
+export const Back2top = styled.div`
+    cursor: pointer;
+    
+    // background-color: ${theme.colors.floralwhite};
+    width: 4em;
+    position: relative;
+    color: ${theme.colors.grey};
+    color: ${theme.colors.gray};
+    color: #d4d4d4;
+    
+    text-align: center;
+    // line-height: 2.5rem;
+    // background-color: ${theme.colors.floralwhite};
+    // background-color: ${theme.colors.grey_white};
+    
+    i {
+        display: block;
+        font-size: 1.5rem;
+        height: 3rem;
+        width: 2rem;
+        // background-color: pink;
+        line-height: 3rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    &::after{
+        content: 'Back to Top';
+        // display: block;
+        box-sizing: border-box;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        font-size: .9rem;
+        height: 3rem;
+        line-height: 1.2rem;
+        padding: .3rem;
+        font-weight: bold;
+        // background-color: ${theme.colors.burlywood};
+        background-color: ${theme.colors.grey_white};
+        // color: ${theme.colors.cadetblue};
+        // color: rgba(71, 196, 237, .9);
+        color: ${theme.colors.burlywood};
+        border-radius: 5px;
+        display: none;
+        z-index: 555;
+    }
+    &:hover{
+        &::after{
+            display: block;
+        }
+        i{
+            visibility: hidden;
+        }
+    }
+`;
