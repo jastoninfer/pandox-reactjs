@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {LazyLoadImage} from 'react-lazy-load-image-component';
 
 import { PageService } from '../../../services/data';
 import type { PageRecommendResData, PageResData } from 'types/page';
@@ -44,13 +45,18 @@ const Item: React.FC<ItemProps> = ({
             <S.ItemImagesContainer>
                 {images.map((image, index) => (
                     <div className="item-single-image-container" key={index}>
-                        <img src={image} alt="image preview"></img>
+                        {/* <img src={image} alt="image preview"></img> */}
+                        <LazyLoadImage
+                            src={image}
+                            alt="image preview"
+                        />
                     </div>
                 ))}
             </S.ItemImagesContainer>
             <S.ItemAuthorContainer>
                 <div className="item-author-avatar-container">
-                    <img src={author.avatar}></img>
+                    {/* <img src={author.avatar}></img> */}
+                    <LazyLoadImage src={author.avatar}/>
                 </div>
                 <span onClick={handleItemAuthorClick}>
                     {`@${author.name}` || ''}

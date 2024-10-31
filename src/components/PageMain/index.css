@@ -18,13 +18,17 @@ img.resized {
 
 .BlogContentContainer code.codespan {
     background-color: #f5f4f4;
+    /* background-color: #fcfcfc; */
     /* background-color: black;
     background-color: gray;
     background-color: lightgrey; */
     border-radius: 0.2em;
     padding: 0.1em;
     /* font-weight: bold; */
-    color: rgb(92, 146, 246);
+    /* color: rgb(92, 146, 246); */
+    font-size: .9rem;
+    color: #2566cf;
+    /* color: burlywood; */
     /* box-shadow: 0 0 0 .1em #f5f4f4; */
 }
 
@@ -96,11 +100,9 @@ blockquote::before {
 
 #BlogContent a {
     /* text-decoration: none; */
-    color: #467fdb;
-}
-#BlogContent a:hover {
-    /* text-decoration: none; */
-    color: #2566cf;
+    /* color: #467fdb; */
+    /* color: burlywood; */
+    color: cadetblue;
 }
 
 .katex-display { overflow: auto hidden }

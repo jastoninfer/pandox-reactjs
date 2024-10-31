@@ -12,15 +12,11 @@ export const BlogMain = styled('div')<BlogMainProps>(
     margin-top: 15vh;
     display: flex;
     flex-direction: column;
-    // position: relative;
-    // display: flex;
-    // flex-direction: column;
 
     .BlogMainAlert {
         background-color: antiquewhite;
         padding: 0.5em;
         font-size: 0.9em;
-        // color: ${theme.colors.dark_grey};
     }
 
     .BlogTitleLabel {
@@ -39,6 +35,7 @@ export const BlogMain = styled('div')<BlogMainProps>(
         }
         .BlogTitleLabelKeywords {
             display: flex;
+            flex-wrap: wrap;
             .Title-Label-Button {
                 display: inline-block;
                 // background-color: #33dab6;
