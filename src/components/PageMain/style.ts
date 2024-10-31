@@ -86,8 +86,11 @@ export const BlogMain = styled('div')<BlogMainProps>(
     }
 
     .BlogContentContainer {
+        overflow:hidden;
         display: flex;
-        width: 100%;
+        // background-color: yellow;
+        // box-sizing: border-box;
+        // max-width: 90%;
         // min-height: 10rem;
         margin-bottom: 2em;
         margin-top: 0.5em;
@@ -95,7 +98,10 @@ export const BlogMain = styled('div')<BlogMainProps>(
         .BlogContentInnerContainer{
             // background-color: red;
             position: relative;
-            width: 100%;
+            // max-width: calc(100% - 250px - 2rem);
+            // width: 100%;
+            flex-basis: 50%;
+            overflow:hidden;
             flex-grow: 1;
             #BlogBack2topContainer{
                 widht: 4rem;
@@ -133,7 +139,7 @@ export const BlogMain = styled('div')<BlogMainProps>(
         flex-basis: 250px;
         flex-shrink: 0;
         flex-grow: 0;
-        // background-color: red;
+        // background-color: green;
         box-sizing: border-box;
         display: ${heading_len > 0 && 'block' || 'none'};
         @media only screen and (max-width: ${theme.breakpoints.desktop}) {

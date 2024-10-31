@@ -89,10 +89,11 @@ export const SearchContainer = styled.div`
                         padding-top: 1em;
                         div.page-item-avatar-container {
                             border-radius: 50%;
-                            height: 70%;
+                            height: 1.2rem;
                             aspect-ratio: 1/1;
                             overflow: hidden;
-                            border: 1px solid ${theme.colors.clay_blue};
+                            border: 1px solid ${theme.colors.burlywood};
+                            background-color: blue;
                             img {
                                 width: 100%;
                                 height: 100%;
@@ -133,13 +134,7 @@ export const SearchContainer = styled.div`
                     }
                 }
                 div.search-pageitem-right-container {
-                    // width: 50%;
-                    // width: 50em;
-                    // wdith: 30%;
-                    // flex-grow: 1;
-                    // height: 12em;
-                    // max-height: 5em;
-                    // max-height: 50%;
+
                     width: 30%;
                     @media only screen and (max-width: ${theme.breakpoints
                             .mobile}) {
@@ -152,8 +147,6 @@ export const SearchContainer = styled.div`
                     align-items: center;
                     margin-top: 2em;
                     align-self: flex-end;
-                    border: 1px solid ${theme.colors.border_grey};
-                    border-radius: 0.3em;
                     img {
                         // padding-top: 1em;
                         max-width: 100%;
@@ -179,11 +172,13 @@ export const SearchContainer = styled.div`
                 border-bottom: 1px solid ${theme.colors.border_grey};
                 div.search-useritem-avatar-container {
                     // background-color: ${theme.colors.clay_blue};
+                    // width: 2rem;
                     border-radius: 50%;
                     height: 50%;
+                    flex-shrink: 0;
                     aspect-ratio: 1/1;
                     overflow: hidden;
-                    border: 1px solid ${theme.colors.clay_blue};
+                    border: 1px solid ${theme.colors.burlywood};
                     img {
                         width: 100%;
                         height: 100%;

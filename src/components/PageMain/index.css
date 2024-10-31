@@ -6,6 +6,12 @@ p{
     font-family: "Computer Modern Serif", serif;
 }
 
+.BlogContentContainer h1,h2,h3,h4{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+}
+
 img.resized {
     max-width: 80vw;
     display: block;
