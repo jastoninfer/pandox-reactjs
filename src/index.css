@@ -25,6 +25,11 @@ body {
     font-family: "Computer Modern Serif", serif;
 } */
 
+input {
+    border-radius: 0;
+    border: none;
+}
+
 textarea {
     font-size: 1rem;
     font-family: monospace;

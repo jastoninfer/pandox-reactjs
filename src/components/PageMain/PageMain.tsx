@@ -385,6 +385,8 @@ const PageMain = () => {
                 const tmp5: number = blogContentContainer.getBoundingClientRect().bottom;
                 const tmp6: number = blogContentContainer.getBoundingClientRect().top;
                 const tmp7: number = blogContentContainer.getBoundingClientRect().right;
+                const contentWidth: number = blogContentContainer.offsetWidth;
+                // console.log('width', contentWidth);
                 // console.log(tmp5);
                 // console.log(blogContentContainer.getBoundingClientRect());
                 if(tmp6 >= 0 || tmp5 <= window.innerHeight) {
@@ -393,7 +395,9 @@ const PageMain = () => {
                 }else if(tmp6<0){
                     blogback2topContainer.className = 'xsticky';
                     blogback2topContainer.style.top = `${window.innerHeight-80}px`;
-                    blogback2topContainer.style.right = `${window.innerWidth-tmp7-20}px`;
+                    // blogback2topContainer.style.right = `${window.innerWidth-tmp7-35}px`;
+                    // blogback2topContainer.style.left = `${contentWidth}px`;
+                    blogback2topContainer.style.right = `0px`;
                     // console.log('DOWN');
                 }
             }

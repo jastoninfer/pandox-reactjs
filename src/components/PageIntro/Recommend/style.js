@@ -18,7 +18,6 @@ export const Header = styled.div`
     // font-weight: bold;
     text-align: left;
     align-items: center;
-    // background-color: ${lightGrey};
     margin-top: 8vh;
     
 
@@ -44,8 +43,6 @@ export const Header = styled.div`
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
-        // color:black;
-        // padding-bottom: 5px;
         
     }
 
@@ -106,9 +103,6 @@ export const ItemsContainer = styled.div`
 
 export const Item = styled.div`
     margin-top: 2em;
-    // align-items: stretch;
-    // height: 30vh;
-    // width: 97%;
     padding: 0.5em;
     gap: 0.3em;
     width: 94%;
@@ -119,8 +113,6 @@ export const Item = styled.div`
     padding-right: 0.5em;
     // 这里使用媒体查询，更合适，当视口很窄时，最好展示一列而不是两列
     background-color: white;
-    // background-color:  rgba(71, 196, 237, 0.4);
-    // background-color:rgba(255, 127, 80, 0.3);
     border-radius: 0.5em;
     display: flex;
     flex-direction: column;
@@ -135,9 +127,6 @@ export const ItemTitle = styled.a`
     padding: 0.2em;
     font-size: 1.2rem;
     font-weight: bold;
-    // color: #4d4b4b;
-    // text-align: left;
-    // padding-left: 1em;
     align-self: left;
     padding-left: 0.5em;
     color: ${theme.colors.dark_grey};
@@ -159,34 +148,22 @@ export const ItemImagesContainer = styled.div`
     height: auto;
     margin-top: 10px;
     margin-bottom: 0.3em;
-    // max-height: 50px;
     gap: 3px;
     .item-single-image-container {
         flex: 0 1 47%;
         &:nth-child(1) {
             flex: 40%;
         }
-        // height: auto;
         max-height: 180px;
         max-width: 97%;
         text-align:center;
         line-height: 100%;
-        // object-fit: cover;
-        // border-radius: 50px;
         border-radius: 6px;
-        // padding: 3px;
-        // background-color: grey;
-        // margin: 0 auto;
         overflow: hidden;
         img {
             max-width: 100%;
-            // max-height: 520px;
             position: relative;
-            // top: 50%;
-            // transform: translateY(-10%);
-            // height: auto;
             object-fit: contain;
-            // object-position: center;
         }
     }
 `;
@@ -226,8 +203,6 @@ export const ItemAuthorContainer = styled.div`
 `;
 
 export const ItemAuthor = styled.span`
-    // background-color: yellow;
-    // color: blue;
     text-align: left;
     padding-left: 0.5em;
     text-decoration: none;
@@ -266,6 +241,4 @@ export const ItemContent = styled.div`
 
 export const StyledRecommend = styled.div`
     background-color: white;
-    // padding: 0vw 5vw 0vw 5vw;
-    // top, right, buttom, left
 `;

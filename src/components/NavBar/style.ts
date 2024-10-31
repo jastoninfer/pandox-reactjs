@@ -35,9 +35,7 @@ export const NavBar = styled('div')<NavBarProps>(
   .Nav-Bar-Extensions {
     height: 100%;
     flex-basis: 10rem;
-    // wdith: 10px;
     flex-grow: 1;
-    // background-color: green;
   }
   #NavBarButtons {
     flex-shrink: 0;
@@ -59,7 +57,6 @@ export const NavBar = styled('div')<NavBarProps>(
   }
 
   .Nav-Bar-Button > .Login-Menu{
-    // z-index: 13;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -73,7 +70,6 @@ export const NavBar = styled('div')<NavBarProps>(
     width: 200px;
     border-radius: 5px;
     border: 1px solid #f0f0f0;
-    // box-sizing: border-box;
     outline: 10px solid transparent;
     &::before{
       content: '';
@@ -93,24 +89,16 @@ export const NavBar = styled('div')<NavBarProps>(
     }
 
     .Login-Menu-Button{
-      // background-color: red;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      // background-color: red;
       .Nav-Bar-Logout{
-        // color: red;
         &:hover{
           color: ${theme.colors.warning_red}
         }
       }
-      // background-color: red;
-      // margin-top: 10px;
-      &:hover{
-        // font-weight: bold;
-      }
-      // border-top: 1px solid #f0f0f0;
+
       z-index: 21;
       color: ${theme.colors.grey};
       div {
@@ -126,9 +114,6 @@ export const NavBar = styled('div')<NavBarProps>(
           // margin-left: auto;
           text-align: left;
           padding-left: 2rem;
-          // background-color: green;
-          // align-self: center;
-          // justify-self:center;
         }
         &:hover{
           background-color: #f0f0f0;
@@ -140,27 +125,15 @@ export const NavBar = styled('div')<NavBarProps>(
         background-color: ${theme.colors.border_grey};
       }
       div.Login-Menu-Username{
-        // width:100%;
-        // height: 100%;
-        // display: flex;
-        // flex-direction: column;
-        // align-items: center;
-        // justify-content: center;
-        // border-bottom: 1px solid #f0f0f0;
-        // margin-bottom: .5em;
         &:hover{
-          // font-weight: bold;
           background-color: #f0f0f0;
         }
-        // border-top: transparent;
-        // background-color: green;
       }
     }
   }
 
   .overlay-dark{
     background-color: rgba(0, 0, 0, 0.5);
-    // background-color: green;
   }
 
   .Nav-Bar-Icon {
@@ -169,7 +142,6 @@ export const NavBar = styled('div')<NavBarProps>(
 
   #Nav-Bar-Button-Signup{
     i {
-      // background-color: green;
       font-size: 1.1em;
     }
     @media only screen and (min-width: ${theme.breakpoints.tablet}) {
@@ -181,25 +153,18 @@ export const NavBar = styled('div')<NavBarProps>(
         margin-left: 4px;
         content: 'Sign up';
         width: 4rem;
-        // background-color: green;
         text-align: center;
       }
     }
   }
   
   #Nav-Bar-Button-Search{
-    // font-size: 1.1rem;
     i {
-      // background-color: green;
       font-size: 1.1em;
     }
 
-    // color: ${theme.colors.dark_grey};
     &:hover{
-      // background-color: rgba(191, 191, 191, .3);
-      // font-size: 1.1em;
       font-weight: bold;
-      // color: ${theme.colors.black};
     }
     @media only screen and (min-width: ${theme.breakpoints.tablet}) {
       &::after {
@@ -207,24 +172,17 @@ export const NavBar = styled('div')<NavBarProps>(
         margin-left: 4px;
         content: 'Search';
         width: 4rem;
-        // background-color: green;
         text-align: center;
       }
     }
   }
 
   #Nav-Bar-Button-NewPage{
-    // color: ${theme.colors.dark_grey};
-    // font-size: 1.1rem;
     i {
-      // background-color: green;
       font-size: 1.1em;
     }
     &:hover{
-      // background-color: rgba(191, 191, 191, .3);
-      // font-size: 1.1em;
       font-weight: bold;
-      // color: ${theme.colors.black};
     }
     @media only screen and (min-width: ${theme.breakpoints.tablet}) {
       &::after {
@@ -233,7 +191,6 @@ export const NavBar = styled('div')<NavBarProps>(
         content: 'Write';
         width: 3rem;
         text-align: center;
-        // background-color: green;
       }
     }
   }
@@ -302,9 +259,6 @@ export const SearchBox = styled('div')`
             background: none;
             border-radius: 15px;
             padding: 0;
-            // border: 1px solid green;
-            // font-weight: bold;
-            // font-size: 1rem;
             background-color: ${theme.colors.green_blue};
             color: white;
             height: 2rem;

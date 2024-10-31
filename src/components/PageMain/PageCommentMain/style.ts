@@ -30,7 +30,7 @@ export const AvatarContainer = styled('div')<AvatarContainerProps>(
             cursor: pointer;
         }
     }
-    border: 1px solid ${theme.colors.clay_blue};
+    border: 1px solid ${theme.colors.burlywood};
 `
 );
 
@@ -162,9 +162,6 @@ export const ReplyBox = styled('div')<ReplyBoxProps>(
             }
         }
         button.reply-box-cancel{
-            // &::before{
-            //     content: "Cancel";
-            // }
         }
         button.reply-box-submit{
             // &::before{

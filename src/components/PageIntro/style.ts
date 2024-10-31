@@ -7,13 +7,7 @@ export const SubTitle = styled.div`
     text-align: left;
     // justify-content: center;
     align-items: flex-end;
-    // padding-left: 10vw;
-    // padding-top: 20px;
-    // position: relative;
     flex-basis: 30%;
-    // background-color:grey;
-    // top: 20%;
-    // display: block;
     font-size: 2em;
     font-family: 'Baskerville';
     font-weight: normal;
@@ -25,15 +19,8 @@ export const SubTitle = styled.div`
 export const Title = styled.div`
     display: flex;
     align-items: center;
-    // position: relative;
-    // top: 50px;
-    // margin-top:20px;
     text-align: left;
     margin-top: 7vh;
-    // padding-left: 10vw;
-    // flex-basis: 40%;
-    // flex-grow: 1;
-    // display: block;
     font-family: 'Helvetica';
     font-size: 3em;
     font-weight: bold;
@@ -44,23 +31,14 @@ export const Title = styled.div`
 `;
 
 export const Slogan = styled.div`
-color:white;
-    // font-family: 'Helvetica';
-    // font-size: 3em;
-    // font-weight: bold;
-    // position: relative;
-    // flex-grow: 1;
+    color:white;
     display: flex;
     flex-direction: column;
-    // justify-content: flex-end;
-    // height: 460px;
     height: 80%;
     padding-left: 10vw;
-    // background-color: lightblue;
     &::before {
         content: '';
         flex-basis: 15%;
-        // background-color:blue;
     }
 `;
 
@@ -76,8 +54,6 @@ export const Star = styled('div')<StarProps>(({key, top, left, delay}) => `
     width: 2px;
     height: 2px;
     background-color: white;
-    // border-radius: 50%;
-    // box-shadow: 0 0 10px white;
     clip-path: polygon(
         50% 0%,   /* 顶部 */
         60% 40%,  /* 右上角 */
@@ -122,13 +98,9 @@ export const Footer = styled.div`
     gap: 1.2em;
     width: 100%;
     .footer-brand-claim {
-        
+
     }
     .footer-links {
-        // padding: .5em;
-        // @media only screen and (max-width: ${theme.breakpoints.mobile}) {
-        //     align-self: center;
-        // }
         display: flex;
         gap: 0.6em;
         font-size: 0.9em;
@@ -153,10 +125,8 @@ export const Footer = styled.div`
     @media only screen and (min-width: ${theme.breakpoints.tablet}) {
         padding-left: 4em;
         .footer-brand-claim {
-            // padding-left: 3em;
         }
         .footer-links {
-            // padding-left: 3em;
         }
     }
 `;

@@ -5,7 +5,7 @@ export const Back2top = styled.div`
     cursor: pointer;
     
     // background-color: ${theme.colors.floralwhite};
-    width: 4em;
+    width: 4rem;
     position: relative;
     color: ${theme.colors.grey};
     color: ${theme.colors.gray};
@@ -24,7 +24,8 @@ export const Back2top = styled.div`
         // background-color: pink;
         line-height: 3rem;
         margin-left: auto;
-        margin-right: auto;
+        // padding-right: 1rem;
+        // margin-right: auto;
     }
     &::after{
         content: 'Back to Top';

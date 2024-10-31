@@ -96,46 +96,28 @@ export const BlogMain = styled('div')<BlogMainProps>(
         margin-top: 0.5em;
         position: relative;
         .BlogContentInnerContainer{
+            // background-color: red;
             position: relative;
-            width: 75%;
+            width: 100%;
             flex-grow: 1;
             #BlogBack2topContainer{
-                // width: 5rem;
-                // width: 100px;
-                // height: 100px;
-                // min-width: 10rem;
+                widht: 4rem;
                 height: 3rem;
                 // background-color: green;
                 // color: red;
                 // z-index:9999;
                 &.xnormal{
-                    position: absolute;
-                    bottom: 0;
-                    // right: 0;
-                    right: 0;
                     display: none;
                 }
                 &.xsticky {
                     position: fixed;
-                    top: 100px;
-                    right: 0;
-                    // right: 0;
+                    // top: 100px;
+                    // right: -1rem;
                 }
-                // display: none;
             }
         }
 
         #BlogContent {
-            // width: 75%;
-            // flex-grow: 1;
-            // width:100%;
-            // box-sizing: border-box;
-            // padding-left: 1rem;
-            padding-right: 4rem;
-            // max-width:100%;
-            // margin-right: 5rem;
-            // margin-left:auto;
-            // margin-right:auto;
             
             & > p {
                 font-family: Geneva, Calibri, sans-serif;
@@ -156,7 +138,6 @@ export const BlogMain = styled('div')<BlogMainProps>(
         flex-grow: 0;
         // background-color: red;
         box-sizing: border-box;
-        // display: none;
         display: ${heading_len > 0 && 'block' || 'none'};
         @media only screen and (max-width: ${theme.breakpoints.desktop}) {
             display: none;
@@ -172,19 +153,15 @@ export const BlogMain = styled('div')<BlogMainProps>(
         #Toc-Title {
             // display: none;
             font-size: 1.1em;
-            // font-weight: bold;
             color: ${theme.colors.dark_grey};
         }
         #BlogTableofContents {
-            // box-sizing: border-box;
             padding: 0.5rem;
             padding-left: 0;
             &.normal {
-                // background-color: purple;
                 position: inherit;
             }
             &.restore {
-                // background-color: blue;
                 position: absolute;
                 bottom: 0;
             }
@@ -201,18 +178,12 @@ export const BlogMain = styled('div')<BlogMainProps>(
             }
             a {
                 font-size: .9rem;
-                // display:none;
-                // width:100%;
-                // background-color: yellow;
                 overflow-wrap: break-word;
                 text-decoration: none;
                 color: ${theme.colors.dark_grey};
                 &:hover {
-                    // text-decoration: underline;
                     color: black;
                 }
-                // background-color:green;
-                // border-left: ${theme.colors.border_grey} 2px solid;
                 &.selected {
                     margin-left: -2px;
                     background-color: green;
@@ -281,7 +252,6 @@ export const BlogMain = styled('div')<BlogMainProps>(
                 color: ${theme.colors.green_blue}
             }
         }
-        // flex-direction: column;
     }
 `
 );

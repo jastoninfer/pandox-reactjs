@@ -30,12 +30,9 @@ export const LoginContainer = styled.div`
                 width: 12em;
                 border: none;
                 border-bottom: 0.5px solid ${theme.colors.dark_grey};
-                // border-radius: .1em;
                 outline: none;
                 &:focus {
                     border-bottom: 1px solid ${theme.colors.dark_grey};
-                    // border-radius: 0.2em;
-                    // outline: 1px solid ${theme.colors.cadetblue};
                 }
             }
         }
@@ -58,12 +55,8 @@ export const LoginContainer = styled.div`
         }
     }
     div.alert-fail {
-        // background-color: green;
         font-size: 0.9em;
         padding: 0.3em;
         color: ${theme.colors.warning_red};
-        // padding-left: 4em;
-        // padding-right: 4em;
-        // width: 100%;
     }
 `;
