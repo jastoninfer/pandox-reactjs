@@ -73,7 +73,7 @@ export const BlogMain = styled('div')<BlogMainProps>(
                 width: 100%;
                 object-fit: cover;
             }
-            border: 1px solid ${theme.colors.clay_blue};
+            border: 1px solid ${theme.colors.burlywood};
         }
         .BlogAutherInfoUsername {
             margin-left: 12px;
