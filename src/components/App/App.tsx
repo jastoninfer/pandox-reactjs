@@ -32,7 +32,7 @@ import { useBackgroundTasks } from '../../backendTasks';
 // }
 
 const App = () => {
-    useBackgroundTasks();
+    // useBackgroundTasks();
 
     // const [navExt, setNavExt] = useState(null);
 

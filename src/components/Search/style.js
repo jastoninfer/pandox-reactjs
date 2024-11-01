@@ -14,7 +14,7 @@ export const SearchContainer = styled.div`
     div.search-error-container {
         h1 {
             font-size: 1.5em;
-            padding-top: 0;
+            padding-top: 2rem;
         }
     }
     div.search-container {

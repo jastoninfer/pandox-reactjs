@@ -107,6 +107,7 @@ const SearchBox: React.FC<SearchBoxProps> = React.memo(({handleOverlayClick}) =>
             // 搜索内容不为空
             handleOverlayClick();
             navigate(`/search/${searchTerm}`);
+            // window.location.reload();
             return;
         }
     };

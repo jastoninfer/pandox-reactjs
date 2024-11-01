@@ -168,7 +168,7 @@ export const SearchPages: React.FC<SearchPagesProps> = ({ parentMatch }) => {
         }
         getPages();
         // 拉取内容, 通过底部navbar进行操作
-    }, []);
+    }, [searchTerm]);
 
     return (
         <div className="search-pages-container">
@@ -255,7 +255,7 @@ export const SearchUsers = () => {
         // 挂载时执行检索操作(可能)
         // 拉取内容, 通过底部navbar进行操作
         getUsers();
-    }, []);
+    }, [searchTerm]);
     return (
         <div className="search-users-container">
             {users &&
@@ -279,17 +279,25 @@ const Search = () => {
     const maxSearchLength: number = SEARCH_LEN_LIMIT.MAX;
 
     const [error, setError] = useState<string>('');
+    const navigate = useNavigate();
+    const location = useLocation();
+
 
     useEffect(() => {
         // 挂载时执行检索操作(可能)
+        // console.log('new term', searchTerm);
         if (!searchTerm || searchTerm.length < minSearchLength) {
             setError('Search term should not be shorter than 2.');
             return;
         } else if (searchTerm.length > maxSearchLength) {
             setError('Search term length should not exceed 30.');
             return;
+        }else if(location.pathname===`/search/${searchTerm}`){
+            navigate(`/search/${searchTerm}/pages`, {replace:true});
+            setError('');
+            return;
         }
-    }, []);
+    }, [searchTerm, location.pathname]);
 
     return (
         <div>
