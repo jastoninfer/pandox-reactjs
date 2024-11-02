@@ -191,8 +191,17 @@ interface SearchUserItemProps {
 }
 
 const SearchUserItem: React.FC<SearchUserItemProps> = ({ userItem }) => {
+    const navigate: NavigateFunction = useNavigate();
+    const source = userItem._source;
+    const handleSearchUserItemOnClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        navigate(`/users/@${source.username}/about`);
+        // console.log('source is', source);
+    };
+
     return (
-        <div className="search-useritem-container">
+        <div className="search-useritem-container"
+            onClick={handleSearchUserItemOnClick}>
             <div className="search-useritem-avatar-container">
                 <img src={userItem._source.avatar}></img>
             </div>

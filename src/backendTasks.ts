@@ -17,18 +17,3 @@ export const useBackgroundTasks = () => {
            }
     });
 };
-
-//     console.log('go...');
-
-//     useEffect(() => {
-//         // const webSocket = getWebSocket();
-//         // const tokenCheckInterval = setInterval(handleTokenCheck, TOKEN_CHECK_INTERVAL);
-//         console.log('go....');
-//         return () => {
-//             // clearInterval(tokenCheckInterval);
-//         }
-//     }, [getWebSocket]);
-
-// export {
-//     useBackgroundTasks,
-// };

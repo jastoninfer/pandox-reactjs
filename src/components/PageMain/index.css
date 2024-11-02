@@ -39,7 +39,7 @@ img.resized {
 }
 
 .BlogContentContainer pre code.hljs {
-    font-family: 'Monaco';
+    font-family: 'Source Code Pro', Monaco, 'Courier New', monospace;
     /* background-color: #f2ecd4; */
     /* background-color: rgb(162, 153, 157); */
     /* background-color: #d3f0f9; */

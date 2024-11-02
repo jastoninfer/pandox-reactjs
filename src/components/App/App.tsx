@@ -23,7 +23,7 @@ import { useCallback, useEffect, useState } from 'react';
 import '../../index.css';
 import 'katex/dist/katex.css';
 
-import { useBackgroundTasks } from '../../backendTasks';
+// import { useBackgroundTasks } from '../../backendTasks';
 
 // export const __handleOverlayClick = () => {
 //     // disable overlay
