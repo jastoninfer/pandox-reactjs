@@ -87,7 +87,6 @@ export const SearchContainer = styled.div`
                             aspect-ratio: 1/1;
                             overflow: hidden;
                             border: 1px solid ${theme.colors.burlywood};
-                            background-color: blue;
                             img {
                                 width: 100%;
                                 height: 100%;

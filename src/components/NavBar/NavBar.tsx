@@ -1,7 +1,11 @@
 import { ThunkDispatch } from 'redux-thunk';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavigateFunction, useLinkClickHandler, useNavigate } from 'react-router-dom';
+import {
+    NavigateFunction,
+    useLinkClickHandler,
+    useNavigate,
+} from 'react-router-dom';
 
 import logo from '../../static/logo.svg';
 import logo_inv from '../../static/logo_inv.svg';
@@ -10,7 +14,7 @@ import * as S from './style';
 import { logout } from '../../actions/auth';
 import { SearchEService } from '../../services/data';
 import { C_SearchBox } from 'constants/navbar.constant';
-import { NavBarDisplayType,ScrollLevel } from 'enums/navbar.enum';
+import { NavBarDisplayType, ScrollLevel } from 'enums/navbar.enum';
 import type { _ReduxState, AuthState } from 'types/states';
 import type { A_Any } from 'types/actions';
 import type {
@@ -23,161 +27,163 @@ import type {
 import './index.scss';
 
 interface SearchBoxProps {
-    handleOverlayClick: ()=>void;
+    handleOverlayClick: () => void;
 }
 
-const SearchBox: React.FC<SearchBoxProps> = React.memo(({handleOverlayClick}) => {
-    const max_user_items = C_SearchBox.MAX_USER_ITEMS;
-    const max_page_items = C_SearchBox.MAX_PAGE_ITEMS;
-    const min_search_length = C_SearchBox.MIN_SEARCH_QUERY_LEN;
-    const navigate = useNavigate();
-    const lastRequestTime = useRef<number>(0);
-    // const lastResponseTime = useRef(0);
-    const [searchTerm, setSearchTerm] = useState<string>('');
-    const [candidateUsers, setCandidateUsers] = useState<
-        SinglePaginatedESUser[]
-    >([]);
-    const [candidatePages, setCandidatePages] = useState<
-        SinglePaginatedESPage[]
-    >([]);
-    const minRequestGap = C_SearchBox.MIN_REQUEST_TIME_GAP;
-    const holdonGap = C_SearchBox.HOLD_ON_TIME_GAP;
-    // let lastRequestTime = 0;
-    const handleSearchInputChange = (
-        e: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        const value: string = e.target.value;
-        setSearchTerm(value);
-        const currentTime: number = Date.now();
-        lastRequestTime.current = currentTime;
-        if (value.length >= min_search_length) {
-            setTimeout(() => {
-                if (currentTime >= lastRequestTime.current) {
-                    try {
-                        SearchEService.searchUser(value)
-                            .then((data: PaginatedESUsersResData) => {
-                                if (
-                                    currentTime >= lastRequestTime.current
-                                ) {
-                                    const results: SinglePaginatedESUser[] =
-                                        data.results;
-                                    setCandidateUsers(
-                                        results.slice(0, max_user_items)
-                                    );
-                                }
-                            })
-                            .catch((err) => {
-                                console.log(err);
-                            });
-                        SearchEService.searchPage(value)
-                            .then((data: PaginatedESPagesResData) => {
-                                if (
-                                    currentTime >= lastRequestTime.current
-                                ) {
-                                    const results = data.results;
-                                    setCandidatePages(
-                                        results.slice(0, max_page_items)
-                                    );
-                                }
-                            })
-                            .catch((err) => {
-                                console.log(err);
-                            });
-                    } catch (err: any) {
-                        console.log(err.message || 'Error occurred.');
+const SearchBox: React.FC<SearchBoxProps> = React.memo(
+    ({ handleOverlayClick }) => {
+        const max_user_items = C_SearchBox.MAX_USER_ITEMS;
+        const max_page_items = C_SearchBox.MAX_PAGE_ITEMS;
+        const min_search_length = C_SearchBox.MIN_SEARCH_QUERY_LEN;
+        const navigate = useNavigate();
+        const lastRequestTime = useRef<number>(0);
+        // const lastResponseTime = useRef(0);
+        const [searchTerm, setSearchTerm] = useState<string>('');
+        const [candidateUsers, setCandidateUsers] = useState<
+            SinglePaginatedESUser[]
+        >([]);
+        const [candidatePages, setCandidatePages] = useState<
+            SinglePaginatedESPage[]
+        >([]);
+        const minRequestGap = C_SearchBox.MIN_REQUEST_TIME_GAP;
+        const holdonGap = C_SearchBox.HOLD_ON_TIME_GAP;
+        // let lastRequestTime = 0;
+        const handleSearchInputChange = (
+            e: React.ChangeEvent<HTMLInputElement>
+        ) => {
+            const value: string = e.target.value;
+            setSearchTerm(value);
+            const currentTime: number = Date.now();
+            lastRequestTime.current = currentTime;
+            if (value.length >= min_search_length) {
+                setTimeout(() => {
+                    if (currentTime >= lastRequestTime.current) {
+                        try {
+                            SearchEService.searchUser(value)
+                                .then((data: PaginatedESUsersResData) => {
+                                    if (
+                                        currentTime >= lastRequestTime.current
+                                    ) {
+                                        const results: SinglePaginatedESUser[] =
+                                            data.results;
+                                        setCandidateUsers(
+                                            results.slice(0, max_user_items)
+                                        );
+                                    }
+                                })
+                                .catch((err) => {
+                                    console.log(err);
+                                });
+                            SearchEService.searchPage(value)
+                                .then((data: PaginatedESPagesResData) => {
+                                    if (
+                                        currentTime >= lastRequestTime.current
+                                    ) {
+                                        const results = data.results;
+                                        setCandidatePages(
+                                            results.slice(0, max_page_items)
+                                        );
+                                    }
+                                })
+                                .catch((err) => {
+                                    console.log(err);
+                                });
+                        } catch (err: any) {
+                            console.log(err.message || 'Error occurred.');
+                        }
                     }
-                }
-            }, holdonGap);
-        } else {
-            setCandidateUsers([]);
-            setCandidatePages([]);
-        }
-    };
-
-    const handleSearchSubmitOnClick = (
-        e: React.MouseEvent<HTMLButtonElement>
-    ) => {
-        e.preventDefault();
-        if (searchTerm) {
-            // search term cannot be empty
-            handleOverlayClick();
-            navigate(`/search/${searchTerm}`);
-            // window.location.reload();
-            return;
-        }
-    };
-
-    const handleCandidatePageOnClick =
-        (pageItem: SinglePaginatedESPage) =>
-        (e: React.MouseEvent<HTMLDivElement>) => {
-            e.preventDefault();
-            handleOverlayClick();
-
-            navigate(
-                `/pages/@${pageItem._source.author}/${pageItem._source.id}`
-            );
+                }, holdonGap);
+            } else {
+                setCandidateUsers([]);
+                setCandidatePages([]);
+            }
         };
 
-    const handleCandidateUserOnClick =
-        (userItem: SinglePaginatedESUser) =>
-        (e: React.MouseEvent<HTMLDivElement>) => {
+        const handleSearchSubmitOnClick = (
+            e: React.MouseEvent<HTMLButtonElement>
+        ) => {
             e.preventDefault();
-            handleOverlayClick();
-            navigate(`/users/@${userItem._source.username}`);
+            if (searchTerm) {
+                // search term cannot be empty
+                handleOverlayClick();
+                navigate(`/search/${searchTerm}`);
+                // window.location.reload();
+                return;
+            }
         };
 
-    return (
-        <S.SearchBox>
-            <div className="input-search">
-                <input
-                    type="text"
-                    value={searchTerm}
-                    onChange={handleSearchInputChange}
-                    placeholder="Input username/page title..."
-                />
-                <button onClick={handleSearchSubmitOnClick}>GO</button>
-            </div>
-            <div className="search-suggestions">
-                <span className="search-suggestions-span">
-                    Your search suggestions
-                </span>
-                {candidatePages.length > 0 ? (
-                    <div className="search-results-container">
-                        {/* <span>Your search suggestions</span> */}
-                        <div className="search-page-header">Pages</div>
-                        {candidatePages.map((pageItem, index) => (
-                            <div
-                                key={index}
-                                className="search-results-item"
-                                onClick={handleCandidatePageOnClick(
-                                    pageItem
-                                )}
-                            >
-                                {pageItem._source.title}
-                            </div>
-                        ))}
-                    </div>
-                ) : null}
-                {candidateUsers.length > 0 ? (
-                    <div className="search-results-container">
-                        <div className="search-user-header">Users</div>
-                        {candidateUsers.map((userItem, index) => (
-                            <div
-                                key={index}
-                                className="search-results-item"
-                                onClick={handleCandidateUserOnClick(
-                                    userItem
-                                )}
-                            >
-                                {userItem._source.username}
-                            </div>
-                        ))}
-                    </div>
-                ) : null}
-            </div>
-        </S.SearchBox>
-    );
-});
+        const handleCandidatePageOnClick =
+            (pageItem: SinglePaginatedESPage) =>
+            (e: React.MouseEvent<HTMLDivElement>) => {
+                e.preventDefault();
+                handleOverlayClick();
+
+                navigate(
+                    `/pages/@${pageItem._source.author}/${pageItem._source.id}`
+                );
+            };
+
+        const handleCandidateUserOnClick =
+            (userItem: SinglePaginatedESUser) =>
+            (e: React.MouseEvent<HTMLDivElement>) => {
+                e.preventDefault();
+                handleOverlayClick();
+                navigate(`/users/@${userItem._source.username}`);
+            };
+
+        return (
+            <S.SearchBox>
+                <div className="input-search">
+                    <input
+                        type="text"
+                        value={searchTerm}
+                        onChange={handleSearchInputChange}
+                        placeholder="Input username/page title..."
+                    />
+                    <button onClick={handleSearchSubmitOnClick}>GO</button>
+                </div>
+                <div className="search-suggestions">
+                    <span className="search-suggestions-span">
+                        Your search suggestions
+                    </span>
+                    {candidatePages.length > 0 ? (
+                        <div className="search-results-container">
+                            {/* <span>Your search suggestions</span> */}
+                            <div className="search-page-header">Pages</div>
+                            {candidatePages.map((pageItem, index) => (
+                                <div
+                                    key={index}
+                                    className="search-results-item"
+                                    onClick={handleCandidatePageOnClick(
+                                        pageItem
+                                    )}
+                                >
+                                    {pageItem._source.title}
+                                </div>
+                            ))}
+                        </div>
+                    ) : null}
+                    {candidateUsers.length > 0 ? (
+                        <div className="search-results-container">
+                            <div className="search-user-header">Users</div>
+                            {candidateUsers.map((userItem, index) => (
+                                <div
+                                    key={index}
+                                    className="search-results-item"
+                                    onClick={handleCandidateUserOnClick(
+                                        userItem
+                                    )}
+                                >
+                                    {userItem._source.username}
+                                </div>
+                            ))}
+                        </div>
+                    ) : null}
+                </div>
+            </S.SearchBox>
+        );
+    }
+);
 
 interface DropDownProps {
     container: React.ReactElement;
@@ -186,7 +192,12 @@ interface DropDownProps {
     isLoggedIn: boolean;
 }
 
-const DropDown: React.FC<DropDownProps> = ({ container, child, menu, isLoggedIn }) => {
+const DropDown: React.FC<DropDownProps> = ({
+    container,
+    child,
+    menu,
+    isLoggedIn,
+}) => {
     const [open, setOpen] = React.useState<boolean>(false);
     return React.cloneElement(
         container,
@@ -198,7 +209,12 @@ const DropDown: React.FC<DropDownProps> = ({ container, child, menu, isLoggedIn 
         [
             child,
             open && (
-                <div className={`Login-Menu ${isLoggedIn&&'logged_in'||'not-logged-in'}`} key={1}>
+                <div
+                    className={`Login-Menu ${
+                        (isLoggedIn && 'logged_in') || 'not-logged-in'
+                    }`}
+                    key={1}
+                >
                     {menu.map((menuItem, index) => (
                         <div className="Login-Menu-Button" key={index}>
                             {React.cloneElement(menuItem, undefined)}
@@ -234,7 +250,9 @@ const NavBar: React.FC<NavBarProps> = ({ displaytype, ext }) => {
     const navBarRef = useRef<HTMLDivElement>(null);
     const buttonsRef = useRef<HTMLDivElement>(null);
     const navBarLogoRef = useRef<HTMLImageElement>(null);
-    const overlayEle = document.querySelector('.App div.overlay') as HTMLElement;
+    const overlayEle = document.querySelector(
+        '.App div.overlay'
+    ) as HTMLElement;
 
     const navigate: NavigateFunction = useNavigate();
     const dispatch: ThunkDispatch<_ReduxState, void, A_Any> = useDispatch();
@@ -246,7 +264,6 @@ const NavBar: React.FC<NavBarProps> = ({ displaytype, ext }) => {
     const handleLogout = () => {
         dispatch(logout());
     };
-    
 
     const handleSearchClick = () => {
         // enable overlay
@@ -258,9 +275,8 @@ const NavBar: React.FC<NavBarProps> = ({ displaytype, ext }) => {
     const handleOverlayClick = useCallback(() => {
         // disable overlay
         setShowSearchBox(false);
-        
-        document.body.classList.remove('overlay-active');
 
+        document.body.classList.remove('overlay-active');
     }, []);
 
     useEffect(() => {
@@ -268,46 +284,27 @@ const NavBar: React.FC<NavBarProps> = ({ displaytype, ext }) => {
             const offset: number = window.scrollY;
             const viewportHeight: number = window.innerHeight;
             if (offset > viewportHeight * 0.3) {
-                // setScrollLevel(ScrollLevel.MAIN);
-                if(displaytype !== NavBarDisplayType.SECONDARY && scrollLevelRef.current === ScrollLevel.TOP) {
-                    // set background-color; height; border-bottom
+                if (
+                    displaytype !== NavBarDisplayType.SECONDARY &&
+                    scrollLevelRef.current === ScrollLevel.TOP
+                ) {
                     scrollLevelRef.current = ScrollLevel.MAIN;
-                    navBarRef.current && (navBarRef.current.className = 'nav-secondary');
-                    // navBarRef.current?.style.setProperty('background-color', '#ffffff');
-                    // navBarRef.current?.style.setProperty('height', '60px');
-                    // navBarRef.current?.style.setProperty('border-bottom', '1.0px solid #f0f0f0');
-                    // navBarRef.current?.style.setProperty('font-size', '1rem');
-                    // navBarRef.current?.style.setProperty('color', 'black');
+                    navBarRef.current &&
+                        (navBarRef.current.className = 'nav-secondary');
                     buttonsRef.current?.classList.remove('nav-primary');
-                    // buttonsRef.current?.style.setProperty('color', 'black');
-                    // const tem = navBarRef.current?.querySelector('.Nav-Bar-Logo') as HTMLImageElement|undefined;
-                    // if(tem){
-                    //     tem.src = logo;
-                    // }
-                    // navBarLogoRef.current?.classList.remove('nav-primary');
                     navBarLogoRef.current && (navBarLogoRef.current.src = logo);
                 }
             } else {
-                // setScrollLevel(ScrollLevel.TOP);
-                if(displaytype !== NavBarDisplayType.SECONDARY && scrollLevelRef.current === ScrollLevel.MAIN) {
+                if (
+                    displaytype !== NavBarDisplayType.SECONDARY &&
+                    scrollLevelRef.current === ScrollLevel.MAIN
+                ) {
                     scrollLevelRef.current = ScrollLevel.TOP;
-                    navBarRef.current && (navBarRef.current.className = 'nav-primary');
-                    // navBarRef.current?.style.setProperty('background-color', 'rgba(0,0,0,0)');
-                    // navBarRef.current?.style.setProperty('background-color', '#ffffff');
-                    // navBarRef.current?.style.setProperty('height', '80px');
-                    // navBarRef.current?.style.setProperty('border-bottom', '0');
-                    // navBarRef.current?.style.setProperty('color', 'white');
-                    // buttonsRef.current?.style.setProperty('color', 'white');
+                    navBarRef.current &&
+                        (navBarRef.current.className = 'nav-primary');
                     buttonsRef.current?.classList.add('nav-primary');
-                    // navBarRef.current?.style.setProperty('font-size', '1.1rem');
-                    // console.log('456');
-                    // navBarRef
-                    // const tem = navBarRef.current?.querySelector('.Nav-Bar-Logo') as HTMLImageElement|undefined;
-                    // if(tem){
-                    //     tem.src = logo_inv;
-                    // }
-                    // navBarLogoRef.current?.classList.add('nav-primary');
-                    navBarLogoRef.current && (navBarLogoRef.current.src = logo_inv);
+                    navBarLogoRef.current &&
+                        (navBarLogoRef.current.src = logo_inv);
                 }
             }
         };
@@ -342,20 +339,33 @@ const NavBar: React.FC<NavBarProps> = ({ displaytype, ext }) => {
     return (
         <div
             id="navbar"
-            ref = {navBarRef}
-            className={displaytype===NavBarDisplayType.SECONDARY&&'nav-secondary'||'nav-primary'}
+            ref={navBarRef}
+            className={
+                (displaytype === NavBarDisplayType.SECONDARY &&
+                    'nav-secondary') ||
+                'nav-primary'
+            }
         >
             <img
-                src={displaytype===NavBarDisplayType.SECONDARY&&logo||logo_inv}
+                src={
+                    (displaytype === NavBarDisplayType.SECONDARY && logo) ||
+                    logo_inv
+                }
                 alt="logo"
                 className="Nav-Bar-Logo"
                 onClick={handleLogoClick}
-                ref = {navBarLogoRef}
+                ref={navBarLogoRef}
             ></img>
-            <div className="Nav-Bar-Extensions">
-                {ext}
-            </div>
-            <div id="NavBarButtons" className={displaytype===NavBarDisplayType.SECONDARY&&'nav-secondary'||'nav-primary'} ref={buttonsRef}>
+            <div className="Nav-Bar-Extensions">{ext}</div>
+            <div
+                id="NavBarButtons"
+                className={
+                    (displaytype === NavBarDisplayType.SECONDARY &&
+                        'nav-secondary') ||
+                    'nav-primary'
+                }
+                ref={buttonsRef}
+            >
                 <div
                     className="Nav-Bar-Button"
                     id="Nav-Bar-Button-Search"
@@ -383,7 +393,6 @@ const NavBar: React.FC<NavBarProps> = ({ displaytype, ext }) => {
                                 <img src={user?.avatar} alt="avatar"></img>
                             </div>
                         }
-
                         menu={[
                             <div
                                 className="Login-Menu-Username"
@@ -410,7 +419,6 @@ const NavBar: React.FC<NavBarProps> = ({ displaytype, ext }) => {
                                 Log out
                             </div>,
                         ]}
-
                         isLoggedIn={isLoggedin}
                     />
                 ) : (
@@ -440,7 +448,6 @@ const NavBar: React.FC<NavBarProps> = ({ displaytype, ext }) => {
                                 Sign up
                             </div>,
                         ]}
-
                         isLoggedIn={isLoggedin}
                     />
                 )}
@@ -450,7 +457,7 @@ const NavBar: React.FC<NavBarProps> = ({ displaytype, ext }) => {
                             className="overlay overlay-dark"
                             onClick={handleOverlayClick}
                         ></div>
-                        <SearchBox handleOverlayClick={handleOverlayClick}/>
+                        <SearchBox handleOverlayClick={handleOverlayClick} />
                     </div>
                 )}
             </div>

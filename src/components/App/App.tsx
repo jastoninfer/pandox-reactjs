@@ -19,9 +19,7 @@ import Notifications from '../Notifications/Notifications';
 import { NotificationsResponses } from '../Notifications/Notifications';
 import { SearchPages, SearchUsers } from '../Search/Search';
 import ScrollToTop from 'components/ScrollToTop/ScrollToTop';
-// import { useCallback, useEffect, useState } from 'react';
 
-// import '../../index.css';
 import 'katex/dist/katex.css';
 
 // import { useBackgroundTasks } from '../../backendTasks';
@@ -31,8 +29,6 @@ const App = () => {
 
     return (
         <div className="App">
-            {/* <div className="overlay overlay-dark"/> */}
-            {/* </div> */}
             <ScrollToTop/>
             <Routes>
                 <Route index element={<PageIntro />} />

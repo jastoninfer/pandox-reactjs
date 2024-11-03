@@ -1,13 +1,11 @@
-
 import { useCallback } from 'react';
 import * as S from './style';
 
 const Back2top = () => {
-
     const back2topOnClick = useCallback(() => {
         window.scrollTo({
             top: 0,
-            behavior: 'smooth'
+            behavior: 'smooth',
         });
     }, []);
 

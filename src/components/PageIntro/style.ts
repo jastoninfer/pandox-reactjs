@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import theme from '../../commons/style';
-// import backgroundImage from '../../static/pexels-brian-de-karma-806590-1686302.jpg';
 
 export const SubTitle = styled.div`
     display: flex;
@@ -31,7 +30,7 @@ export const Title = styled.div`
 `;
 
 export const Slogan = styled.div`
-    color:white;
+    color: white;
     display: flex;
     flex-direction: column;
     height: 80%;
@@ -49,7 +48,8 @@ interface StarProps {
     delay: Number;
 }
 
-export const Star = styled('div')<StarProps>(({key, top, left, delay}) => `
+export const Star = styled('div')<StarProps>(
+    ({ key, top, left, delay }) => `
     position: absolute;
     width: 2px;
     height: 2px;
@@ -78,14 +78,15 @@ export const Star = styled('div')<StarProps>(({key, top, left, delay}) => `
     top: ${top}%;
     left: ${left}%;
     animation-delay: ${delay}s;
-`);
+`
+);
 
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
 
     background-color: black;
-    height: max(300px,100vh);
+    height: max(300px, 100vh);
     position: relative;
 `;
 export const Footer = styled.div`
@@ -98,7 +99,6 @@ export const Footer = styled.div`
     gap: 1.2em;
     width: 100%;
     .footer-brand-claim {
-
     }
     .footer-links {
         display: flex;
