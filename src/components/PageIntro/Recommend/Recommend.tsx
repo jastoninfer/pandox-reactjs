@@ -41,11 +41,9 @@ const Item: React.FC<ItemProps> = ({
             <S.ItemContent onClick={handleItemTitleClick}>
                 {content}
             </S.ItemContent>
-            {/* 可能需要插入若干图片(至多3张?) */}
             <S.ItemImagesContainer>
                 {images.map((image, index) => (
                     <div className="item-single-image-container" key={index}>
-                        {/* <img src={image} alt="image preview"></img> */}
                         <LazyLoadImage
                             src={image}
                             alt="image preview"
@@ -55,7 +53,6 @@ const Item: React.FC<ItemProps> = ({
             </S.ItemImagesContainer>
             <S.ItemAuthorContainer>
                 <div className="item-author-avatar-container">
-                    {/* <img src={author.avatar}></img> */}
                     <LazyLoadImage src={author.avatar}/>
                 </div>
                 <span onClick={handleItemAuthorClick}>
@@ -85,22 +82,15 @@ const Recommend:React.FC<RecommendProps> = ({cols=2}) => {
         groupedRecommendPages.fill([]).forEach((_, index) => {
             groupedRecommendPages[index] = new Array<PageRecommendResData>;
         });
-        // console.log(groupedRecommendPages);
-        // console.log(pagesWithoutImgs);
-        // console.log(pagesWithImgs);
+
         pagesWithoutImgs.reduce((acc, page, index) => {
             acc[index % cols].push(page);
-            // console.log('index is ', index);
-            // console.log('target idx is ', index % cols);
             return acc;
         }, groupedRecommendPages);
-        // console.log('0', groupedRecommendPages[0].map((value, index)=>(value.id)));
-        // console.log('1', groupedRecommendPages[1].map((value, index)=>(value.id)));
         pagesWithImgs.reduce((acc, page, index) => {
             acc[cols-1-index%cols].push(page);
             return acc;
         }, groupedRecommendPages);
-        console.log(groupedRecommendPages);
         return groupedRecommendPages;
     };
 
@@ -139,33 +129,7 @@ const Recommend:React.FC<RecommendProps> = ({cols=2}) => {
                         ))}
                     </S.ItemSingleColContainer>
                 ))}
-                {/* <S.ItemSingleColContainer>
-                    {recommendPages &&
-                        recommendPages.map((page, index) => (
-                            <Item
-                                key={index}
-                                pageId={page.id}
-                                title={page.title}
-                                author={{ name: page.author, avatar: page.avatar }}
-                                content={page.content.slice(0, 500)}
-                                images={page.imageUrls}
-                            />
-                        ))}
-                </S.ItemSingleColContainer> */}
             </S.ItemsMultiColContainer>
-            {/* <S.ItemsContainer>
-                {recommendPages &&
-                    recommendPages.map((page, index) => (
-                        <Item
-                            key={index}
-                            pageId={page.id}
-                            title={page.title}
-                            author={{ name: page.author, avatar: page.avatar }}
-                            content={page.content.slice(0, 500)}
-                            images={page.imageUrls}
-                        />
-                    ))}
-            </S.ItemsContainer> */}
         </S.StyledRecommend>
     );
 };

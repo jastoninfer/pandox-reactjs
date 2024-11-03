@@ -36,9 +36,7 @@ export default class RichEditPlugin implements PluginValue {
 
   update(update: ViewUpdate): void {
     if (update.docChanged || update.viewportChanged || update.selectionSet){
-    //   console.log('update called....');
-      // console.log(update.state.doc);
-      // console.log(syntaxTree(update.view.state));
+      
       this.decorations = this.process(update.view);
     }
   }
@@ -46,21 +44,12 @@ export default class RichEditPlugin implements PluginValue {
   process(view: EditorView): DecorationSet {
     let widgets: Range<Decoration>[] = [];
     let [cursor] = view.state.selection.ranges;
-    // console.log('process called');
-    // console.log('view is ', view);
-    // console.log(view.visibleRanges);
-    // console.log('===========');
-    // console.log(view.state);
+
     for (let { from, to } of view.visibleRanges) {
       syntaxTree(view.state).iterate({
         from, to,
         enter(node) {
-          // console.log('node info', node.name);
-          // console.log(node.from, node.to, node.name);
           if (node.name === 'MarkdocTag'){
-            // console.log('+++++++');
-            // console.log(node);
-            // console.log(node.from, node.to);
             widgets.push(decorationTag.range(node.from, node.to));
           }
 
@@ -69,12 +58,9 @@ export default class RichEditPlugin implements PluginValue {
           }
 
           if(node.name === 'LaTeXBlock'){
-            // console.log('<<<>>>');
-            // widgets.push(decorationTag.range(node.from, node.to));
           }
 
           if (node.name === 'FencedCode'){
-            // console.log('in fenced code...');
             widgets.push(decorationCode.range(node.from, node.to));
           }
 
@@ -83,15 +69,6 @@ export default class RichEditPlugin implements PluginValue {
               return false;
             }
             
-
-          // if (node.name === 'ListMark' && node.matchContext(['BulletList', 'ListItem']) &&
-          //   cursor.from != node.from && cursor.from != node.from + 1){
-          //     widgets.push(decorationBullet.range(node.from, node.to));
-          //   }
-
-          // if (node.name === 'HeaderMark'){
-          //   widgets.push(decorationHidden.range(node.from, node.to + 1));
-          // }
 
           if (tokenHidden.includes(node.name)){
             widgets.push(decorationHidden.range(node.from, node.to));

@@ -5,13 +5,11 @@ import Footer from '../Footer';
 import { useMemo } from 'react';
 
 const generateStars = (numStars: number) => {
-    // 生成指定数量的星星，每颗星星有随机的 top、left 和动画延迟
-    // console.log('CALLED');
     return Array.from({ length: numStars }).map((_, index) => ({
       id: index,
-      top: Math.random() * 100,     // 随机的 top 位置 (0% 到 100%)
-      left: Math.random() * 100,    // 随机的 left 位置 (0% 到 100%)
-      delay: Math.random() * 3      // 随机的动画延迟 (0 到 3 秒)
+      top: Math.random() * 100,
+      left: Math.random() * 100,
+      delay: Math.random() * 3 
     }));
 };
 
@@ -33,14 +31,6 @@ const PageIntro = () => {
                     <S.Star key={star.id} top={star.top} left={star.left} delay={star.delay}>
                     </S.Star>
                 ))}
-                {/* <div className="star"></div>
-                <div className="star"></div>
-                <div className="star"></div>
-                <div className="star"></div>
-                <div className="star"></div>
-                <div className="star"></div>
-                <div className="star"></div>
-                <div className="star"></div> */}
             </S.Container>
             <Recommend />
             <Footer />

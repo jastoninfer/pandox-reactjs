@@ -19,9 +19,10 @@ import { REGISTER_SUCCESS_COUNT_DOWN } from 'constants/register.constant';
 import * as S from './style';
 
 const vusername = (value: string): string => {
-    // 长度限制5-25
+    // length limit: 5-25
     const regex = /^[a-z0-9]+$/;
-    // 只允许小写字母, 与数字组合, 且必须由小写字母开头
+    // only lower case letters and numbers allowed, must start with
+    //  lower case letters
     if (value.length < 5 || value.length > 25) {
         return 'Username length must be between 5 and 25.';
     } else if (regex.test(value) === false) {
@@ -60,7 +61,7 @@ const Register = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [passwordConfirm, setPasswordConfirm] = useState<string>('');
-    const [countdown, setCountdown] = useState<number>(0);
+    const [countdown, setCountdown] = useState<number>(-1);
     const intervalIdRef = useRef<NodeJS.Timeout | null>(null);
 
     const { message } = useSelector<_ReduxState, MessageState>(
@@ -94,7 +95,6 @@ const Register = () => {
 
     const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // console.log('submit');
         // 在这里执行验证程序
         const message: string =
             vusername(username) ||
@@ -113,7 +113,6 @@ const Register = () => {
                     setCountdown(REGISTER_SUCCESS_COUNT_DOWN);
                 })
                 .catch(() => {
-                    // console.log('fail');
                     setSuccessful(false);
                 });
         }
@@ -128,11 +127,9 @@ const Register = () => {
         if (countdown === 0) {
             dispatch(clearMessage());
             navigate('/login');
-            // 清除interval
         }
         return () => {
             if (countdown === 0 && intervalIdRef.current) {
-                // 清除interval
                 clearInterval(intervalIdRef.current);
             }
         };

@@ -12,9 +12,6 @@ export const Back2top = styled.div`
     color: #d4d4d4;
     
     text-align: center;
-    // line-height: 2.5rem;
-    // background-color: ${theme.colors.floralwhite};
-    // background-color: ${theme.colors.grey_white};
     
     i {
         display: block;
@@ -40,10 +37,7 @@ export const Back2top = styled.div`
         line-height: 1.2rem;
         padding: .3rem;
         font-weight: bold;
-        // background-color: ${theme.colors.burlywood};
         background-color: ${theme.colors.grey_white};
-        // color: ${theme.colors.cadetblue};
-        // color: rgba(71, 196, 237, .9);
         color: ${theme.colors.burlywood};
         border-radius: 5px;
         display: none;

@@ -8,7 +8,6 @@ export const MarkdownEditor = styled.div`
         overscroll-behavior-y: none;
         border-radius: 5px;
         min-height: 200px;
-        // border: 2px solid ${theme.colors.border_grey};
         border: none;
         padding: 10px;
         resize: none;
@@ -25,7 +24,7 @@ export const MarkdownEditor = styled.div`
 
     }
     .cm-markdoc-bullet * {
-        
+
     }
       
     .cm-markdoc-bullet::after {
@@ -153,12 +152,7 @@ export const EditContainer = styled.div`
     align-items: center;
 `;
 
-interface EditHeaderContainerProps {
-    scroll: string | null;
-}
-
-export const EditHeaderContainer = styled.div<EditHeaderContainerProps>(
-    ({ scroll }) => `
+export const EditHeaderContainer = styled.div`
     @media only screen and (min-width: ${theme.breakpoints.tablet}) {
         min-width: 250px;
     }
@@ -234,8 +228,7 @@ export const EditHeaderContainer = styled.div<EditHeaderContainerProps>(
             }
         }
     }
-`
-);
+`;
 
 export const EditorContentLoading = styled.div`
     margin-top: 80px;

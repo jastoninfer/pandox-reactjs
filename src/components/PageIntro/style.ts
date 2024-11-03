@@ -55,14 +55,14 @@ export const Star = styled('div')<StarProps>(({key, top, left, delay}) => `
     height: 2px;
     background-color: white;
     clip-path: polygon(
-        50% 0%,   /* 顶部 */
-        60% 40%,  /* 右上角 */
-        100% 50%, /* 右边 */
-        60% 60%,  /* 右下角 */
-        50% 100%, /* 底部 */
-        40% 60%,  /* 左下角 */
-        0% 50%,   /* 左边 */
-        40% 40%   /* 左上角 */
+        50% 0%,
+        60% 40%,
+        100% 50%,
+        60% 60%,
+        50% 100%,
+        40% 60%,
+        0% 50%,
+        40% 40%
       );
     animation: twinkling 3s infinite ease-in-out;
     @keyframes twinkling {

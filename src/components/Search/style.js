@@ -28,13 +28,10 @@ export const SearchContainer = styled.div`
                 font-size: 1.5em;
                 display: inline-block;
                 color: ${theme.colors.grey};
-                // overflow-wrap: break-word;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                // background-color: ${theme.colors.clay_blue};
                 &.search-term {
                     color: ${theme.colors.black};
-                    // background-color: ${theme.colors.burlywood};
                 }
             }
         }
@@ -69,13 +66,10 @@ export const SearchContainer = styled.div`
             }
         }
         div.search-pages-container {
-            // color: red;
             div.search-pageitem-container {
                 border-bottom: 1px solid ${theme.colors.border_grey};
                 display: flex;
-                // color: blue;
                 align-items: center;
-                // justify-content: center;
                 padding-bottom: 1.5em;
                 gap: 1em;
                 div.search-pageitem-left-container {
@@ -127,7 +121,6 @@ export const SearchContainer = styled.div`
                         -webkit-box-orient: vertical;
                         overflow: hidden;
                         word-break: break-all;
-                        // padding-left: .5em;
                         text-align: left;
                         color: ${theme.colors.dark_grey};
                         cursor: pointer;
@@ -141,16 +134,13 @@ export const SearchContainer = styled.div`
                         width: 40%;
                     }
                     padding: 0.6em;
-                    // background-color: ${theme.colors.clay_blue};
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     margin-top: 2em;
                     align-self: flex-end;
                     img {
-                        // padding-top: 1em;
                         max-width: 100%;
-                        // max-height: 100%;
                         height: auto;
                         object-fit: cover;
                     }
@@ -161,7 +151,6 @@ export const SearchContainer = styled.div`
             padding-left: 1em;
             padding-right: 1em;
             div.search-useritem-container {
-                // color: blue;
                 display: flex;
                 align-items: center;
                 gap: 1.3em;
@@ -171,8 +160,6 @@ export const SearchContainer = styled.div`
                 // background-color: ${theme.colors.floralwhite};
                 border-bottom: 1px solid ${theme.colors.border_grey};
                 div.search-useritem-avatar-container {
-                    // background-color: ${theme.colors.clay_blue};
-                    // width: 2rem;
                     border-radius: 50%;
                     height: 50%;
                     flex-shrink: 0;
@@ -187,10 +174,7 @@ export const SearchContainer = styled.div`
                     }
                 }
                 div.search-useritem-desc-container {
-                    // min-width: 50%;
                     flex-grow: 1;
-                    // height: 100%;
-                    // background-color: ${theme.colors.burlywood};
                     display: flex;
                     flex-direction: column;
                     gap: 0.2em;

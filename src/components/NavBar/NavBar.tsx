@@ -5,12 +5,7 @@ import { NavigateFunction, useLinkClickHandler, useNavigate } from 'react-router
 
 import logo from '../../static/logo.svg';
 import logo_inv from '../../static/logo_inv.svg';
-// import search_icon from '../../static/search.png';
-import search_icon from '../../static/search-svgrepo-com.svg';
-import edit_icon from '../../static/edit-4-svgrepo-com.svg';
 import * as S from './style';
-
-// import { __handleOverlayClick } from 'components/App/App';
 
 import { logout } from '../../actions/auth';
 import { SearchEService } from '../../services/data';
@@ -25,7 +20,7 @@ import type {
     SinglePaginatedESUser,
 } from 'types/search.es';
 
-import './index.css';
+import './index.scss';
 
 interface SearchBoxProps {
     handleOverlayClick: ()=>void;
@@ -104,7 +99,7 @@ const SearchBox: React.FC<SearchBoxProps> = React.memo(({handleOverlayClick}) =>
     ) => {
         e.preventDefault();
         if (searchTerm) {
-            // 搜索内容不为空
+            // search term cannot be empty
             handleOverlayClick();
             navigate(`/search/${searchTerm}`);
             // window.location.reload();
@@ -117,9 +112,7 @@ const SearchBox: React.FC<SearchBoxProps> = React.memo(({handleOverlayClick}) =>
         (e: React.MouseEvent<HTMLDivElement>) => {
             e.preventDefault();
             handleOverlayClick();
-            // console.log('pageItem');
-            // console.log(pageItem);
-            // console.log('navigate-->', pageItem._source.id);
+
             navigate(
                 `/pages/@${pageItem._source.author}/${pageItem._source.id}`
             );
@@ -148,7 +141,6 @@ const SearchBox: React.FC<SearchBoxProps> = React.memo(({handleOverlayClick}) =>
                 <span className="search-suggestions-span">
                     Your search suggestions
                 </span>
-                {/* <br></br> */}
                 {candidatePages.length > 0 ? (
                     <div className="search-results-container">
                         {/* <span>Your search suggestions</span> */}
@@ -191,9 +183,10 @@ interface DropDownProps {
     container: React.ReactElement;
     child: React.ReactElement;
     menu: React.ReactElement[];
+    isLoggedIn: boolean;
 }
 
-const DropDown: React.FC<DropDownProps> = ({ container, child, menu }) => {
+const DropDown: React.FC<DropDownProps> = ({ container, child, menu, isLoggedIn }) => {
     const [open, setOpen] = React.useState<boolean>(false);
     return React.cloneElement(
         container,
@@ -205,7 +198,7 @@ const DropDown: React.FC<DropDownProps> = ({ container, child, menu }) => {
         [
             child,
             open && (
-                <div className="Login-Menu" key={1}>
+                <div className={`Login-Menu ${isLoggedIn&&'logged_in'||'not-logged-in'}`} key={1}>
                     {menu.map((menuItem, index) => (
                         <div className="Login-Menu-Button" key={index}>
                             {React.cloneElement(menuItem, undefined)}
@@ -240,6 +233,7 @@ const NavBar: React.FC<NavBarProps> = ({ displaytype, ext }) => {
 
     const navBarRef = useRef<HTMLDivElement>(null);
     const buttonsRef = useRef<HTMLDivElement>(null);
+    const navBarLogoRef = useRef<HTMLImageElement>(null);
     const overlayEle = document.querySelector('.App div.overlay') as HTMLElement;
 
     const navigate: NavigateFunction = useNavigate();
@@ -252,7 +246,6 @@ const NavBar: React.FC<NavBarProps> = ({ displaytype, ext }) => {
     const handleLogout = () => {
         dispatch(logout());
     };
-    useEffect(()=> console.log('render again...'));
     
 
     const handleSearchClick = () => {
@@ -267,17 +260,8 @@ const NavBar: React.FC<NavBarProps> = ({ displaytype, ext }) => {
         setShowSearchBox(false);
         
         document.body.classList.remove('overlay-active');
-        // overlayEle.style.display = 'none';
-        // __handleOverlayClick();
-    }, []);
 
-    // useEffect(() => {
-    //     // const overlayEle = document.querySelector('.App div.overlay') as Element;
-    //     overlayEle.addEventListener('click', handleOverlayClick);
-    //     return () => {
-    //         overlayEle.removeEventListener('click', handleOverlayClick);
-    //     }
-    // }, []);
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -288,43 +272,42 @@ const NavBar: React.FC<NavBarProps> = ({ displaytype, ext }) => {
                 if(displaytype !== NavBarDisplayType.SECONDARY && scrollLevelRef.current === ScrollLevel.TOP) {
                     // set background-color; height; border-bottom
                     scrollLevelRef.current = ScrollLevel.MAIN;
-                    navBarRef.current?.style.setProperty('background-color', '#ffffff');
-                    navBarRef.current?.style.setProperty('height', '60px');
-                    navBarRef.current?.style.setProperty('border-bottom', '1.0px solid #f0f0f0');
-                    navBarRef.current?.style.setProperty('font-size', '1rem');
+                    navBarRef.current && (navBarRef.current.className = 'nav-secondary');
+                    // navBarRef.current?.style.setProperty('background-color', '#ffffff');
+                    // navBarRef.current?.style.setProperty('height', '60px');
+                    // navBarRef.current?.style.setProperty('border-bottom', '1.0px solid #f0f0f0');
+                    // navBarRef.current?.style.setProperty('font-size', '1rem');
                     // navBarRef.current?.style.setProperty('color', 'black');
-                    buttonsRef.current?.style.setProperty('color', 'black');
-                    const tem = navBarRef.current?.querySelector('.Nav-Bar-Logo') as HTMLImageElement|undefined;
-                    if(tem){
-                        tem.src = logo;
-                    }
-                        // tem.style.setProperty('src', logo);
-                        // console.log(navBarRef.current?.querySelector('.Nav-Bar-Logo'));
-                        // tem.style.setProperty('filter', 'xss');
-                        // console.log(navBarRef.current?.querySelector('.Nav-Bar-Logo'));
-                    // }
-                    // console.log('123');
-                    // const tem = navBarRef.current?.querySelector('.Nav-Bar-Logo');
+                    buttonsRef.current?.classList.remove('nav-primary');
+                    // buttonsRef.current?.style.setProperty('color', 'black');
+                    // const tem = navBarRef.current?.querySelector('.Nav-Bar-Logo') as HTMLImageElement|undefined;
                     // if(tem){
-                    //     tem.setAttribute('filter', 'invert(1)');
+                    //     tem.src = logo;
                     // }
+                    // navBarLogoRef.current?.classList.remove('nav-primary');
+                    navBarLogoRef.current && (navBarLogoRef.current.src = logo);
                 }
             } else {
                 // setScrollLevel(ScrollLevel.TOP);
                 if(displaytype !== NavBarDisplayType.SECONDARY && scrollLevelRef.current === ScrollLevel.MAIN) {
                     scrollLevelRef.current = ScrollLevel.TOP;
-                    navBarRef.current?.style.setProperty('background-color', 'rgba(0,0,0,0)');
+                    navBarRef.current && (navBarRef.current.className = 'nav-primary');
+                    // navBarRef.current?.style.setProperty('background-color', 'rgba(0,0,0,0)');
                     // navBarRef.current?.style.setProperty('background-color', '#ffffff');
-                    navBarRef.current?.style.setProperty('height', '80px');
-                    navBarRef.current?.style.setProperty('border-bottom', '0');
+                    // navBarRef.current?.style.setProperty('height', '80px');
+                    // navBarRef.current?.style.setProperty('border-bottom', '0');
                     // navBarRef.current?.style.setProperty('color', 'white');
-                    buttonsRef.current?.style.setProperty('color', 'white');
-                    navBarRef.current?.style.setProperty('font-size', '1.1rem');
+                    // buttonsRef.current?.style.setProperty('color', 'white');
+                    buttonsRef.current?.classList.add('nav-primary');
+                    // navBarRef.current?.style.setProperty('font-size', '1.1rem');
                     // console.log('456');
-                    const tem = navBarRef.current?.querySelector('.Nav-Bar-Logo') as HTMLImageElement|undefined;
-                    if(tem){
-                        tem.src = logo_inv;
-                    }
+                    // navBarRef
+                    // const tem = navBarRef.current?.querySelector('.Nav-Bar-Logo') as HTMLImageElement|undefined;
+                    // if(tem){
+                    //     tem.src = logo_inv;
+                    // }
+                    // navBarLogoRef.current?.classList.add('nav-primary');
+                    navBarLogoRef.current && (navBarLogoRef.current.src = logo_inv);
                 }
             }
         };
@@ -357,47 +340,35 @@ const NavBar: React.FC<NavBarProps> = ({ displaytype, ext }) => {
     };
 
     return (
-        <S.NavBar
+        <div
             id="navbar"
-            displaytype={displaytype}
-            logged_in={isLoggedin.toString()}
             ref = {navBarRef}
+            className={displaytype===NavBarDisplayType.SECONDARY&&'nav-secondary'||'nav-primary'}
         >
             <img
                 src={displaytype===NavBarDisplayType.SECONDARY&&logo||logo_inv}
                 alt="logo"
                 className="Nav-Bar-Logo"
                 onClick={handleLogoClick}
+                ref = {navBarLogoRef}
             ></img>
             <div className="Nav-Bar-Extensions">
                 {ext}
             </div>
-            <div id="NavBarButtons" ref={buttonsRef}>
+            <div id="NavBarButtons" className={displaytype===NavBarDisplayType.SECONDARY&&'nav-secondary'||'nav-primary'} ref={buttonsRef}>
                 <div
                     className="Nav-Bar-Button"
                     id="Nav-Bar-Button-Search"
                     onClick={handleSearchClick}
                 >
-                    {/* <img
-                        src={search_icon}
-                        alt="search"
-                        className="Nav-Bar-Icon"
-                    ></img> */}
                     <i className="fa-solid fa-magnifying-glass"></i>
-                    {/* <i className="Nav-Bar-Icon fa-solid fa-magnifying-glass"></i> */}
                 </div>
                 <div
                     className="Nav-Bar-Button"
                     id="Nav-Bar-Button-NewPage"
                     onClick={newPageOnClick}
                 >
-                    {/* <img
-                        src={edit_icon}
-                        alt="new"
-                        className="Nav-Bar-Icon"
-                    ></img> */}
                     <i className="fa-solid fa-feather-pointed"></i>
-                    {/* <i className="Nav-Bar-Icon fa-solid fa-feather-pointed"></i> */}
                 </div>
                 {isLoggedin ? (
                     <DropDown
@@ -412,7 +383,7 @@ const NavBar: React.FC<NavBarProps> = ({ displaytype, ext }) => {
                                 <img src={user?.avatar} alt="avatar"></img>
                             </div>
                         }
-                        // child={<span key={0}>{user.username}</span>}
+
                         menu={[
                             <div
                                 className="Login-Menu-Username"
@@ -439,6 +410,8 @@ const NavBar: React.FC<NavBarProps> = ({ displaytype, ext }) => {
                                 Log out
                             </div>,
                         ]}
+
+                        isLoggedIn={isLoggedin}
                     />
                 ) : (
                     <DropDown
@@ -467,6 +440,8 @@ const NavBar: React.FC<NavBarProps> = ({ displaytype, ext }) => {
                                 Sign up
                             </div>,
                         ]}
+
+                        isLoggedIn={isLoggedin}
                     />
                 )}
                 {showSearchBox && (
@@ -479,7 +454,7 @@ const NavBar: React.FC<NavBarProps> = ({ displaytype, ext }) => {
                     </div>
                 )}
             </div>
-        </S.NavBar>
+        </div>
     );
 };
 

@@ -2,12 +2,11 @@ import styled from 'styled-components';
 import theme from '../../../commons/style/theme';
 
 const lightGrey = '#fafafa';
-const lightBlue = 'rgba(10, 163, 245, 1.0)';
 
 export const Test = styled.div`
     width: 1em;
     height: 1em;
-    // background-color: yellow;
+
     box-shadow: 0 0 0 1em red;
 `;
 
@@ -37,7 +36,6 @@ export const Header = styled.div`
         border-radius: 1em 1em 0 0;
         padding: 0.5em;
 
-        // font-size: 60px;
         font-weight: bold;
         background: linear-gradient(45deg, ${theme.colors.cadetblue}, #179499, ${theme.colors.clay_blue});
         -webkit-background-clip: text;
@@ -52,8 +50,6 @@ export const Header = styled.div`
         width: 5vw;
         background-color: white;
         border-radius: 0 0 1em 0;
-        // top-left, top-right, bottom-right, bottom-left
-        // box-shadow: 0 0 0 .414em magenta;
         overflow: hidden;
     }
 
@@ -91,11 +87,9 @@ export const ItemsContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     min-height: 70vh;
-    // flex-direction: column;
-    // height: 2000px;
+
     justify-content: space-around;
     align-items: flex-start;
-    // align-content: stretch;
     padding-left: 5vw;
     padding-right: 5vw;
     padding-bottom: 2em;
@@ -111,7 +105,7 @@ export const Item = styled.div`
     }
     padding-left: 0.5em;
     padding-right: 0.5em;
-    // 这里使用媒体查询，更合适，当视口很窄时，最好展示一列而不是两列
+
     background-color: white;
     border-radius: 0.5em;
     display: flex;
@@ -120,10 +114,8 @@ export const Item = styled.div`
 `;
 
 export const ItemTitle = styled.a`
-    // white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    // background-color: white;
     padding: 0.2em;
     font-size: 1.2rem;
     font-weight: bold;
@@ -141,7 +133,6 @@ export const ItemTitle = styled.a`
 export const ItemImagesContainer = styled.div`
     display: flex;
     width: 100%;
-    // max-width:100%;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
@@ -174,7 +165,6 @@ export const ItemAuthorContainer = styled.div`
     padding-left: 0.5em;
     gap: 8px;
     margin-top: .5rem;
-    // margin-top: .3em;
     align-items: center;
     .item-author-avatar-container {
         border-radius: 50%;
@@ -208,7 +198,6 @@ export const ItemAuthor = styled.span`
     text-decoration: none;
 
     &:hover {
-        // color: ${lightBlue};
         font-weight: bold;
         text-decoration: underline;
         cursor: pointer;
@@ -217,7 +206,6 @@ export const ItemAuthor = styled.span`
 
 export const ItemContent = styled.div`
     display: -webkit-box;
-    // background-color: white;
     flex-grow: 1;
     -webkit-line-clamp: 3;
     max-width: calc(100% - 5px);
@@ -226,9 +214,7 @@ export const ItemContent = styled.div`
     -webkit-box-orient: vertical;
     overflow: hidden;
     word-break: break-all;
-    // margin-top: .3em;
     padding-left: 0.5em;
-    // padding-right: .5em;
     text-align: left;
     color: #302e2e;
     cursor: default;

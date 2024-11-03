@@ -1,0 +1,228 @@
+/* :root {
+    --clay-blue: #467fdb;
+    --mobile: 480px;
+    --tablet: 768px;
+    --desktop: 1025px;
+    --largeDesktop: 1200px;
+} */
+
+$tablet: 768px;
+
+body.overlay-active {
+    overflow: hidden;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    /* background-color: green; */
+    z-index: 11;
+    pointer-events: auto;
+}
+
+.overlay-dark{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#navbar {
+    transition: background-color .7s ease, height .7s ease;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    z-index: 10;
+}
+
+#navbar.nav-primary {
+    background-color: rgba(0,0,0,0);
+    // background-color: red;
+    font-size: 1.1rem;
+    height: 80px;
+    border-bottom: none;
+}
+
+#navbar.nav-secondary {
+    background-color: #ffffff;
+    // background-color: green;
+    font-size: 1.0rem;
+    height: 60px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.Nav-Bar-Logo {
+    height: 80%;
+    cursor: pointer;
+    margin-left: 15px;
+    border-radius:30%;
+    src: url('../../static/logo.svg');
+}
+
+// .Nav-Bar-Logo.nav-primary {
+//     src: url('../../static/logo_inv.svg');
+// }
+
+.Nav-Bar-Extensions {
+    height: 100%;
+    flex-basis: 10rem;
+    flex-grow: 1;
+}
+
+.Nav-Bar-Button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    margin:3px 3px;
+    height: 50%;
+    padding: 2px 4px;
+    cursor: pointer;
+}
+
+#NavBarButtons {
+    flex-shrink: 0;
+    margin-left: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#NavBarButtons.nav-primary{
+    color: white;
+}
+
+#NavBarButtons.nav-seondary {
+    color: black;
+}
+
+.Nav-Bar-Button > .Login-Menu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.95em;
+    gap: .3em;
+    top: calc(100% + 5px);
+    right: 5px;
+    background-color: #fcfcfc; /* grey white */
+    padding: 4px;
+    padding-left: 10px;
+    width: 200px;
+    border-radius: 5px;
+    border: 1px solid #f0f0f0;
+    outline: 10px solid transparent;
+}
+
+.Nav-Bar-Button > .Login-Menu .Login-Menu-Button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 21;
+    color: grey;
+}
+
+.Nav-Bar-Button > .Login-Menu .Login-Menu-Button .Nav-Bar-Logout:hover {
+    color: #db3737; /* warning red */
+}
+
+.Nav-Bar-Button > .Login-Menu .Login-Menu-Button div {
+    width:100%;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.Nav-Bar-Button > .Login-Menu .Login-Menu-Button div i {
+    flex-basis: 30%;
+    text-align: left;
+    padding-left: 2rem;
+}
+
+.Nav-Bar-Button > .Login-Menu .Login-Menu-Button div:hover {
+    background-color: #f0f0f0;
+    color: black;
+}
+
+.Nav-Bar-Button > .Login-Menu .Login-Menu-Button div.login-menu-border {
+    height: 1px;
+    background-color: #f0f0f0; /* border grey */
+}
+
+.Nav-Bar-Button > .Login-Menu .Login-Menu-Button div.Login-Menu-Username:hover {
+    background-color: #f0f0f0;
+} 
+
+.Nav-Bar-Icon {
+    height: 80%;
+}
+
+#Nav-Bar-Button-Signup i, #Nav-Bar-Button-Search i, #Nav-Bar-Button-NewPage i {
+    font-size: 1.1em;
+}
+
+#Nav-Bar-Button-Signup:hover, #Nav-Bar-Button-Search:hover, #Nav-Bar-Button-NewPage:hover {
+    font-weight: bold;
+}
+
+@media only screen and (min-width: $tablet) {
+    #Nav-Bar-Button-Signup::after, #Nav-Bar-Button-Search::after,#Nav-Bar-Button-NewPage::after {
+        display: inline-block;
+        margin-left: 4px;
+        content: 'Sign up';
+        width: 4rem;
+        text-align: center;
+    }
+    #Nav-Bar-Button-Search::after {
+        content: 'Search';
+    }
+    #Nav-Bar-Button-NewPage::after{
+        width: 3rem;
+        content: 'Write';
+    }
+}
+
+#Nav-Bar-Button-Menu{
+    margin-right: 15px;
+}
+
+.Nav-Bar-Avatar-Container{
+    height: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid burlywood;
+}
+
+.Nav-Bar-Avatar-Container img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.Nav-Bar-Button > .Login-Menu::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: 3px;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 8px;
+    clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+    background-color: #fcfcfc; /* grey white */
+}
+
+@media only screen and (min-width: $tablet) {
+    .Nav-Bar-Button > .Login-Menu.logged-in::before {
+        right: -2px;
+    }
+    .Nav-Bar-Button > .Login-Menu.not-logged-in::before {
+        right: calc(4rem - 5px);
+    }
+}

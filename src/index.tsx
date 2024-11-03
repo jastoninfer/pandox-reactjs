@@ -6,7 +6,9 @@ import { StyleSheetManager } from 'styled-components';
 
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
+// import ScrollToTop from 'components/ScrollToTop/ScrollToTop';
 import store from './store';
+// import 'commons/style/variables.css';
 import './index.css';
 
 const rootElement: HTMLElement | null = document.getElementById('root');
@@ -17,6 +19,7 @@ if (rootElement) {
         <React.StrictMode>
             <Provider store={store}>
                 <Router>
+                    {/* <ScrollToTop/> */}
                     <StyleSheetManager shouldForwardProp={() => true}>
                         <App />
                     </StyleSheetManager>

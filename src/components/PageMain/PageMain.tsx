@@ -4,8 +4,6 @@ import { useSelector } from 'react-redux';
 import { marked, Tokens } from 'marked';
 import hljs from 'highlight.js';
 import markedKatex from 'marked-katex-extension';
-// import 'highlight.js/styles/felipec.css';
-// import 'highlight.js/styles/sunburst.css';
 import 'highlight.js/styles/stackoverflow-light.css';
 
 import NavBar from '../NavBar';
@@ -30,7 +28,7 @@ interface PageMainTocProps {
 };
 
 const PageMainToc: React.FC<PageMainTocProps> = ({headings}) => {
-    // console.log(headings);
+
     interface HeadingHrefOff {
         href: string;
         offset: number;
@@ -98,16 +96,15 @@ const PageMainToc: React.FC<PageMainTocProps> = ({headings}) => {
                 headerEle.scrollIntoView({
                     // top: scrollTo,
                     block: 'center',
-                    behavior: 'smooth', // 使用平滑滚动效果 or 'auto'立即滑到
+                    behavior: 'smooth',
                 });
             }
         }
     }, []);
 
     const handleUserScroll = () => {
-        // console.log('you scrolled');
         const scrollOffset = window.scrollY || document.documentElement.scrollTop;
-        // console.log(scrollOffset);
+
         const curOffset = window.innerHeight*.75 + scrollOffset;
         let idx:number = -1;
         headingHrefOffList.forEach((e, index) => {
@@ -115,10 +112,9 @@ const PageMainToc: React.FC<PageMainTocProps> = ({headings}) => {
                 idx = index;
             }
         });
-        // console.log('idx is ', idx);
+
         if(idx == currentTocIdx) return;
-        // console.log('idx is ', idx);
-        // const idx:number = headingHrefOffList.findLastIndex((e) => (e.offset < curOffset));
+
         if(currentTocIdx > -1) {
             const preEle = document.querySelector<HTMLAnchorElement>(`a[href="${headingHrefOffList[currentTocIdx].href}"]`);
             preEle?.classList.remove('selected');
@@ -152,8 +148,7 @@ const PageMainToc: React.FC<PageMainTocProps> = ({headings}) => {
                 headingHrefOffList.push(tem);
             }
         });
-        // console.log('my list is...');
-        // console.log(headingHrefOffList);
+
         const blogTOC: HTMLElement | null = document.querySelector(
             '#BlogTableofContents'
         );
@@ -163,22 +158,12 @@ const PageMainToc: React.FC<PageMainTocProps> = ({headings}) => {
         const blogTocLinks = document.querySelectorAll(
             'li>a.linktoc'
         ) as NodeListOf<HTMLAnchorElement>;
+
         blogTocLinks.forEach((item) => {
             item.addEventListener('click', handleTocClick);
         });
         document.addEventListener('scroll', handleUserScroll);
-        // console.log('headings', headings);
-        // if(headings.length === 0) {
-            const container = document.querySelector('#BlogTableofContentsContainer') as HTMLDivElement|null;
-            // if(container){
-            //     container.style.display = headings.length === 0 ? 'none' : 'block';
-            // }
-            console.log('non-zero', headings.length);
-            if(container && headings.length === 0){
-                console.log('zero');
-                // container.style.display = 'none';
-            }
-        // }
+
         return () => {
             const blogTocLinks = document.querySelectorAll(
                 'li>a.linktoc'
@@ -244,8 +229,6 @@ const PageMain = () => {
             ignored: false,
         };
 
-        // let topHeadingLevel:number = 1;
-
         const getTitle = async () => {
             try {
                 if (!pageId) {
@@ -262,18 +245,6 @@ const PageMain = () => {
                         pageResData.content
                     ) as string;
 
-                    // const headings: Tokens.Heading[] = marked.lexer(pageResData.content)
-                    //     .filter((token) => token.type === 'heading') as Tokens.Heading[];
-                    // topHeadingLevel = Math.min(...headings.map((token, index) => token.depth));
-                    // const filteredHeadings = headings.filter((token, index)=> token.depth-topHeadingLevel < MAX_TOC_DEPTH);
-                    // const headings: Tokens.Heading[] = marked
-                    //     .lexer(pageResData.content)
-                    //     .filter(
-                    //         (token) =>
-                    //             token.type === 'heading' &&
-                    //             token.depth <= MAX_TOC_DEPTH
-                    //     ) as Tokens.Heading[];
-                    // const parsedTOC = generateTOC(filteredHeadings);
                     // 用户提供的wildcard, 未必是真正的username
                     // 不刷新页面的情况下更改url
                     window.history.replaceState({}, document.title, newUrl);
@@ -283,24 +254,7 @@ const PageMain = () => {
                         document.querySelector('#BlogContent');
                     if (blogContent) {
                         blogContent.innerHTML = parsedContent;
-                        // const blogback2topContainer: HTMLElement | null = document.querySelector('#BlogBack2topContainer');
-                        // if(blogback2topContainer){
-                        //     blogback2topContainer.style.display='block';
-                        // }
                     }
-
-                    // const blogTOC: HTMLElement | null = document.querySelector(
-                    //     '#BlogTableofContents'
-                    // );
-                    // if (blogTOC) {
-                    //     blogTOC.innerHTML = parsedTOC;
-                    // }
-                    // const blogTocLinks = document.querySelectorAll(
-                    //     'li>a.linktoc'
-                    // ) as NodeListOf<HTMLAnchorElement>;
-                    // blogTocLinks.forEach((item) => {
-                    //     item.addEventListener('click', handleTocClick);
-                    // });
                 }
             } catch (err: any) {
                 console.log(err.message || 'Error occurred.');
@@ -359,7 +313,6 @@ const PageMain = () => {
                     return;
                 }
                 const tmp4: number = tocPar.getBoundingClientRect().top;
-                // const navbarHight: number = window.innerHeight * 0.1;
                 const navbarHight = 100;
                 if (tmp4 >= navbarHight) {
                     tocEle.className = 'normal';
@@ -384,21 +337,14 @@ const PageMain = () => {
             if(blogContentContainer&&blogback2topContainer){
                 const tmp5: number = blogContentContainer.getBoundingClientRect().bottom;
                 const tmp6: number = blogContentContainer.getBoundingClientRect().top;
-                const tmp7: number = blogContentContainer.getBoundingClientRect().right;
-                const contentWidth: number = blogContentContainer.offsetWidth;
-                // console.log('width', contentWidth);
-                // console.log(tmp5);
-                // console.log(blogContentContainer.getBoundingClientRect());
+
                 if(tmp6 >= 0 || tmp5 <= window.innerHeight) {
                     blogback2topContainer.className = 'xnormal';
                     // console.log('UP');
                 }else if(tmp6<0){
                     blogback2topContainer.className = 'xsticky';
                     blogback2topContainer.style.top = `${window.innerHeight-80}px`;
-                    // blogback2topContainer.style.right = `${window.innerWidth-tmp7-35}px`;
-                    // blogback2topContainer.style.left = `${contentWidth}px`;
                     blogback2topContainer.style.right = `0px`;
-                    // console.log('DOWN');
                 }
             }
         };
@@ -407,12 +353,6 @@ const PageMain = () => {
         window.addEventListener('resize', handleBack2topScroll);
         return () => {
             parseInfo.ignored = true;
-            // const blogTocLinks = document.querySelectorAll(
-            //     'li>a.linktoc'
-            // ) as NodeListOf<HTMLAnchorElement>;
-            // blogTocLinks.forEach((item) => {
-            //     item.removeEventListener('click', handleTocClick);
-            // });
 
             parseInfo.handleTocScroll &&
                 window.removeEventListener('scroll', parseInfo.handleTocScroll);
@@ -509,15 +449,7 @@ const PageMain = () => {
                             <Back2top/>
                         </div>
                     </div>
-                    {
-                        // <div id="BlogTableofContentsContainer">
-                        //     <div
-                        //         id="BlogTableofContents"
-                        //         className="normal"
-                        //     ></div>
-                        // </div>
-                        <PageMainToc headings={filteredHeadingsFromPage}/>
-                    }
+                    <PageMainToc headings={filteredHeadingsFromPage}/>
                 </div>
                 <div id="BlogOpsContainer">
                     <button className='BlogOpsLike'>
@@ -526,13 +458,11 @@ const PageMain = () => {
                     </button>
                     {user && pageData && user.username === pageData.author && (
                         <button id="BlogOps-Edit" onClick={editSpanOnClick}>
-                            {/* Edit{' '} */}
                             <i className="fa-solid fa-pen-to-square"></i>
                         </button>
                     )}
                     <button onClick={commentRef.current?.handleCommentOnClick}
                     className='BlogOpsButtonComment'>
-                        {/* Comment{' '} */}
                         <i className="fa-solid fa-comment"></i>
                     </button>
                 </div>

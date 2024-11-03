@@ -38,7 +38,6 @@ export const BlogMain = styled('div')<BlogMainProps>(
             flex-wrap: wrap;
             .Title-Label-Button {
                 display: inline-block;
-                // background-color: #33dab6;
                 text-decoration: underline;
                 margin: 3px 3px;
                 padding: 2px 2px;
@@ -88,40 +87,27 @@ export const BlogMain = styled('div')<BlogMainProps>(
     .BlogContentContainer {
         overflow:hidden;
         display: flex;
-        // background-color: yellow;
-        // box-sizing: border-box;
-        // max-width: 90%;
-        // min-height: 10rem;
         margin-bottom: 2em;
         margin-top: 0.5em;
         position: relative;
         .BlogContentInnerContainer{
-            // background-color: red;
             position: relative;
-            // max-width: calc(100% - 250px - 2rem);
-            // width: 100%;
             flex-basis: 50%;
             overflow:hidden;
             flex-grow: 1;
             #BlogBack2topContainer{
                 widht: 4rem;
                 height: 3rem;
-                // background-color: green;
-                // color: red;
-                // z-index:9999;
                 &.xnormal{
                     display: none;
                 }
                 &.xsticky {
                     position: fixed;
-                    // top: 100px;
-                    // right: -1rem;
                 }
             }
         }
 
-        #BlogContent {
-            
+        #BlogContent { 
             & > p {
                 font-family: Geneva, Calibri, sans-serif;
                 line-height: 1.5em;
@@ -139,7 +125,6 @@ export const BlogMain = styled('div')<BlogMainProps>(
         flex-basis: 250px;
         flex-shrink: 0;
         flex-grow: 0;
-        // background-color: green;
         box-sizing: border-box;
         display: ${heading_len > 0 && 'block' || 'none'};
         @media only screen and (max-width: ${theme.breakpoints.desktop}) {
@@ -147,20 +132,18 @@ export const BlogMain = styled('div')<BlogMainProps>(
         }
         // border-left: 0.5px solid ${theme.colors.border_grey};
         margin-left: 2rem;
-        // padding-left: 1rem;
-        // width: 250px;
         height: auto;
         font-family: Geneva, Calibri, sans-serif;
         position: relative;
         font-size: 1.2em;
         #Toc-Title {
-            // display: none;
             font-size: 1.1em;
             color: ${theme.colors.dark_grey};
         }
         #BlogTableofContents {
             padding: 0.5rem;
             padding-left: 0;
+            // overflow: scroll;
             &.normal {
                 position: inherit;
             }
@@ -169,13 +152,11 @@ export const BlogMain = styled('div')<BlogMainProps>(
                 bottom: 0;
             }
             &.sticky {
-                // background-color: bisque;
                 position: fixed;
                 top: 100px;
                 width:250px;
             }
             div#Toc-Title{
-                // background-color:yellow;
                 padding-left: 0rem;
                 font-size: 1.1rem;
             }
@@ -200,7 +181,6 @@ export const BlogMain = styled('div')<BlogMainProps>(
                 list-style: none;
             }
             & > ul {
-                // background-color:green;
                 border-left: ${theme.colors.border_grey} 2px solid;
                 font-size: 0.9em;
                 padding-left: 0px;
@@ -213,7 +193,6 @@ export const BlogMain = styled('div')<BlogMainProps>(
                 }
             }
             & > ul ul {
-                // background-color:red;
                 padding-left: 0em;
                 a {
                     padding-left: 1.8rem;
@@ -238,16 +217,12 @@ export const BlogMain = styled('div')<BlogMainProps>(
             color: ${theme.colors.dark_grey};
             &:hover {
                 cursor: pointer;
-                // background-color: ${theme.colors.border_grey};
                 color: ${theme.colors.clay_blue};
-                // text-decoration: underline;
             }
         }
         button.BlogOpsLike{
-            // color: green;
             &:hover {
                 color: ${theme.colors.love_red};
-                // color: red;
             }
         }
         button.BlogOpsButtonComment{

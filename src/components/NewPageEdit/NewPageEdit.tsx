@@ -1,38 +1,17 @@
-import React, { useState, useEffect, useRef, SetStateAction } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import markedKatex from 'marked-katex-extension';
 import { marked } from 'marked';
 import hljs from 'highlight.js';
 
-import {crosshairCursor, EditorView, keymap, drawSelection, highlightActiveLine, rectangularSelection, lineNumbers, highlightSpecialChars,highlightActiveLineGutter, ViewPlugin} from "@codemirror/view";
-// import basicSetup from "@codemirror/basic-setup"
+import {crosshairCursor, EditorView, keymap, drawSelection, highlightActiveLine, rectangularSelection, highlightActiveLineGutter} from "@codemirror/view";
 import { EditorState } from '@codemirror/state';
 import {defaultKeymap, history, historyKeymap, indentWithTab} from '@codemirror/commands'
-import { HighlightStyle, foldGutter, foldCode, defaultHighlightStyle, syntaxHighlighting, indentOnInput, indentUnit, bracketMatching, foldKeymap, LanguageDescription } from '@codemirror/language'
-import { languages } from '@codemirror/language-data';
+import { foldGutter, defaultHighlightStyle, syntaxHighlighting, indentOnInput, indentUnit, bracketMatching, foldKeymap } from '@codemirror/language'
 import { closeBrackets, autocompletion, closeBracketsKeymap, completionKeymap } from '@codemirror/autocomplete';
-import {javascript} from '@codemirror/lang-javascript';
-import { markdown } from '@codemirror/lang-markdown';
-import { tags as t } from '@lezer/highlight';
 import { Table } from '@lezer/markdown';
-// import {cpp} from '@codemirror/lang-cpp';
-// import {json} from '@codemirror/lang-json';
+import { languages } from '@codemirror/language-data';
 import { highlightSelectionMatches } from '@codemirror/search';
-import { oneDark } from "@codemirror/theme-one-dark";
-// import * as K from "@codemirror/theme-one-dark";
-import {cpp} from '@codemirror/lang-cpp';
-import {tags} from '@codemirror/highlight';
-import { TagStyle } from '@codemirror/language';
-// import {basicSetup} from '@codemirror/basic-setup';
-// import {EditorView, basicSetup} from "codemirror";
-// import { Table } from '@lezer/markdown';
-// import 'codemirror/mod';
-// import 'codemirror/addon/display/'
-// import RichEditPlugin from './richEdit';
-// import config from './markdoc';
-// import renderBlock from './renderBlock';
-// import highlightStyle from './highlightStyle';
-import ReactDOM from 'react-dom';
 import richEditor from './richUtils/src';
 import markDocConfig from './richUtils/markdoc';
 
@@ -58,19 +37,15 @@ import type { AuthState, _ReduxState } from 'types/states';
 import type { PageResData } from 'types/page';
 import type { _MessageResData } from 'types/services';
 
-// import 'highlight.js/styles/felipec.css';
 import * as S from './style';
 
 import 'katex/dist/katex.css';
 import { AxiosError } from 'axios';
-// import authService from 'services/auth.service';
 import { logout } from 'actions/auth';
 import { ThunkDispatch } from 'redux-thunk';
 import { useDispatch } from 'react-redux';
 import { A_Any } from 'types/actions';
 import { Dispatch } from 'redux';
-// import {dispatch}
-// import './index.css';
 
 interface PageEditTabContentEditorProps {
     parentMatch?: string;
@@ -90,7 +65,7 @@ export const PageEditTabContentEditor: React.FC<
     const [title, setTitle] = useState<string>(titleRef.current);
     const location = useLocation();
     const navigate: NavigateFunction = useNavigate();
-    /* T1 只关注title部分, 以及当前page的状态 */
+    /* PageEditTabContentEditor: title and current page status */
 
     useEffect(() => {
         if (parentMatch === '') {
@@ -104,7 +79,7 @@ export const PageEditTabContentEditor: React.FC<
         statusRef,
         titleRef,
     }) => {
-        /* T4 只关注title以及状态 */
+        /* EditorBlogTitle:  title and current status */
         const [status, setStatus] = useState<PageStatus>(statusRef.current);
         const [title, setTitle] = useState<string>(titleRef.current);
 
@@ -114,7 +89,6 @@ export const PageEditTabContentEditor: React.FC<
             if (e.target.value) {
                 setStatus(e.target.value as PageStatus);
                 statusRef.current = e.target.value as PageStatus;
-                // console.log('status ref cur: ', statusRef.current);
             }
         };
 
@@ -169,40 +143,6 @@ export const PageEditTabContentEditor: React.FC<
         const editorRef = useRef(null);
         const scrollTop = useRef<number>(0);
 
-        if(textareaRef.current){
-            // console.log('go...');
-            // console.log(startState.doc);
-            // const editor = new EditorView({
-            //     state: startState,
-            //     parent: document.getElementById('codemirror-draw-x') as HTMLDivElement,
-            // });
-        }
-        
-
-        // if(textareaRef.current){
-        //     const editor = CodeMirror.fromTextArea(textareaRef.current, {
-        //         mode: 'markdown',
-        //         lineNumbers: true,
-        //     });
-        // }
-
-        const handleTextChange = (
-            e: React.ChangeEvent<HTMLTextAreaElement>
-        ) => {
-            e.preventDefault();
-            scrollTop.current = document.documentElement.scrollTop;
-            setText(e.target.value);
-            contentRef.current = e.target.value;
-        };
-
-        useEffect(()=>{
-            // console.log('go...');
-        });
-
-        useEffect(() => {
-            console.log('RE-MOUNT...');
-        }, []);
-
         useEffect(() => {
             const startState = EditorState.create({
                 doc: contentRef.current,
@@ -242,7 +182,6 @@ export const PageEditTabContentEditor: React.FC<
                     EditorView.updateListener.of((update) => {
                         if(update.changes) {
                             const newText = update.state.doc.toString();
-                            // console.log('CALLED...', );
                             contentRef.current = newText;
                             setText(newText);
                         }
@@ -252,7 +191,6 @@ export const PageEditTabContentEditor: React.FC<
             if(editorRef.current) {
                 const editor = new EditorView({
                     state: startState,
-                    // parent: document.getElementById('codemirror-draw') as HTMLDivElement,
                     parent: editorRef.current,
                 });
                 return () => {
@@ -278,18 +216,10 @@ export const PageEditTabContentEditor: React.FC<
             document.documentElement.scrollTop = scrollTop.current;
         }, [text]);
 
-        /* T3与T1在一个TAB下显示, 但是T3只关注body部分 */
+        /* body */
         return (
             <S.MarkdownEditor>
                 <div id='codemirror-draw' ref={editorRef}></div>
-                {/* <textarea
-                    ref={textareaRef}
-                    id='codemirror-draw-x'
-                    value={text}
-                    onChange={handleTextChange}
-                    // onInput={()=>{this.parentNode.dataset.replicatedValue = this.value}}
-                    rows={1}
-                /> */}
             </S.MarkdownEditor>
         );
     };
@@ -310,7 +240,7 @@ export const PageEditTabContentPreviewer = () => {
         useOutletContext();
     const previewRef = useRef<HTMLDivElement>(null);
 
-    /* T2 只关注page的预览 */
+    /* preivew of body */
 
     useEffect(() => {
         marked.use(markedKatex({ throwOnError: false }));
@@ -347,7 +277,7 @@ export const PageEditTabContentPreviewer = () => {
                 },
             },
         });
-        // 以上部分可以考虑持久化?
+
         const markdownText: string = `# ${titleRef.current}\n${contentRef.current}`;
         const parsedContent: string = marked.parse(markdownText) as string;
         const blogContentElement: null | HTMLElement =
@@ -359,10 +289,6 @@ export const PageEditTabContentPreviewer = () => {
 
     return <div id="BlogContent" ref={previewRef}></div>;
 };
-
-// interface NewPageEditProps {
-//     setNavExt: any;
-// }
 
 const NewPageEdit = () => {
     // pageId maybe undefined
@@ -376,16 +302,11 @@ const NewPageEdit = () => {
     const statusRef = useRef<PageStatus>(DEFAULT_PAGE_STATUS);
     const contentRef = useRef<string>('');
 
-    const editorTabRef = useRef(null);
-    const previewerTabRef = useRef(null);
-
-    // const navBarExtensions = document.querySelector('.Nav-Bar-Extensions') as HTMLElement;
-
     const dispatch: ThunkDispatch<_ReduxState, void, A_Any> = useDispatch();
 
     const handleSubmit = async () => {
         if (pageId) {
-            // 更新
+            // update
             try {
                 const msg: _MessageResData = await PageService.updatePageById(
                     +pageId,
@@ -402,17 +323,12 @@ const NewPageEdit = () => {
                         ((err.response.data && err.response.data.message) || '')
                 );
             }
-            // 可以从Redux中抽取实际的用户名, 这里设置为空不影响实现效果
-            // 如果page的状态为publised, 直接跳转到页面没有问题
-            // 如果page的状态为private/draft, 应该跳转到用户的page-list页面,
-            // 这时我们可以合适地假设用户已经处于登录状态*
+
             navigate(`/pages/@${user?.username}/${pageId}`);
-            // navigate(`/postedit`);
+
         } else {
-            // 添加
+            // add
             try {
-                // console.log('title Ref is ', titleRef.current);
-                // console.log('contnet ref is ', contentRef.current);
                 const data: PageResData = await PageService.createPage({
                     title: titleRef.current,
                     content: contentRef.current,
@@ -424,16 +340,12 @@ const NewPageEdit = () => {
                     err.response?.status === 401 &&
                     err.response?.data.message === 'TokenExpiredError'){
                         //redirect
-                        console.log('go logout');
-                        // await authService.logout();
                         await dispatch(logout());
                         navigate('/login');
                 }else{
                     console.log(err.message || 'Error occurred.');
                 }
-                // console.log(err);
             }
-            // 创建新页面的情况下, 用户一定处于登录状态, 我们可以使用可更新同样的策略
         }
     };
 
@@ -453,15 +365,8 @@ const NewPageEdit = () => {
                     contentRef.current = data.content;
                 }
                 setIsMounted(true);
-                // set mounted to true
-                // register edit header in navbar extensions
-                // setNavExt(<EditorHeader/>);
-
-                // console.log(navBarExtensions);
-                // ReactDOM.createPortal(<EditorHeader/>, navBarExtensions);
             }
             return data;
-            // setPageData(res.data);
         } catch (err: any) {
             console.log(err.message || 'Error occurred.');
             return null;
@@ -469,7 +374,7 @@ const NewPageEdit = () => {
     };
 
     useEffect(() => {
-        // 如果没有登录, 直接跳转到登录界面
+        // redirect to log in page
         if (!user) {
             navigate(`/login`);
             return;
@@ -487,9 +392,6 @@ const NewPageEdit = () => {
             .catch((err) => {});
         return () => {
             info.isUnmounted = true;
-            // unregister edit header
-            // setNavExt(null);
-            // navBarExtensions && ReactDOM.unmountComponentAtNode(navBarExtensions);
         };
     }, []);
 
@@ -516,7 +418,7 @@ const NewPageEdit = () => {
         }, []);
 
         return (
-            <S.EditHeaderContainer scroll={scrollDirection}>
+            <S.EditHeaderContainer>
                 <div className="edit-header">
                     <NavLink to="./editor" className="editor-tab-edit">
                         <i className="fa-solid fa-file-pen"></i>
@@ -545,16 +447,7 @@ const NewPageEdit = () => {
             ) : (
                 (isMounted && (
                     <S.EditContainer>
-                        {/* <EditorHeader /> */}
-                        {/* <EditorHeader /> */}
                         <S.EditorContainer>
-                            {/* <StatusBar/> */}
-                            {/* <span>Title</span> */}
-                            {/* <input type='text' value={title} onChange={handleTitleChange} placeholder='title'/> */}
-                            {/* <span>Content</span> */}
-                            {/* <button onClick={handleSubmit}>Submit</button> */}
-                            {/* <div className='editor-tabs'> */}
-                            {/* </div> */}
                             <Outlet
                                 context={
                                     {

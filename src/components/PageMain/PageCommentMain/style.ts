@@ -41,18 +41,13 @@ export const BlogCommentItem = styled.div`
     margin-top: 0.5em;
     padding-bottom: 0.3em;
     border-radius: 0.3em;
-    // background-color: lightgrey;
     .Blog-Comment-Item-Header {
         display: flex;
         align-items: center;
         background-color: ${theme.colors.floralwhite};
-        // background: linear-gradient(to right,#d5f4fd, white);
         padding: 0.5em;
-        // padding-bottom: 0em;
-        // margin-bottom: 0em;
         .Blog-Comment-Username {
             margin-left: 10px;
-            // font-size: 14px;
             font-size: 0.9em;
             &.Thread-Owner{
                 font-weight: bold;
@@ -68,24 +63,16 @@ export const BlogCommentItem = styled.div`
     .comment-tools {
         display: flex;
         font-size: 0.9em;
-        // flex-direction: column;
         flex-wrap: wrap;
-        // gap: .6em;
-        // justify-content: flex-end;
-        // align-items: center;
         color: ${theme.colors.dark_grey};
         span.comment-date {
             color: ${theme.colors.grey};
             font-size: 0.85em;
-            // margin-left: 1em;
-            // align-self: flex-start;
         }
         div.comment-tools-ops {
             display: inline-flex;
-            // width: 400px;
             gap: 1.0rem;
             margin-left: auto;
-            // margin-right: 2em;
             justify-content: flex-end;
             a {
                 &:hover{
@@ -110,9 +97,7 @@ export const BlogCommentItem = styled.div`
     }
 
     .Blog-Comment-Item-Body {
-        // background-color:bisque;
         padding-left: 1.6em;
-        // border: #282c34 2px solid;
         padding-right: 1em;
     }
 `;
@@ -164,9 +149,6 @@ export const ReplyBox = styled('div')<ReplyBoxProps>(
         button.reply-box-cancel{
         }
         button.reply-box-submit{
-            // &::before{
-            //     content: "Submit";
-            // }
             color: ${theme.colors.green_blue};
         }
     }
@@ -174,11 +156,9 @@ export const ReplyBox = styled('div')<ReplyBoxProps>(
 );
 
 export const BlogSubCommentItem = styled.div`
-    // background-color: lightblue;
     .Blog-Comment-Item-Header {
         background-color: transparent;
         .Blog-Sub-Comment-Reply-Span {
-            // font-size: 14px;
             font-size: 0.9em;
             margin-left: 5px;
             color: ${theme.colors.grey};
@@ -197,8 +177,6 @@ export const BlogCommentItemContent = styled(
     'div'
 )<BlogCommentItemContentProps>(
     ({ displaytype }) => `
-    // background-color: aquamarine;
-    // font-size: 14px;
     font-size: 0.9em;
     text-align: left;
     margin-left: ${displaytype === 'subcomment' ? '24px' : '0px'};
@@ -217,11 +195,9 @@ export const PageCommentPaginationBarContainer = styled(
     margin-top: 2em;
     display: flex;
     margin-left: ${displaytype === 'subcomment' ? '24px' : '0px'};
-    // background-color: antiquewhite;
     color: ${theme.colors.black};
     font-size: .9em;
     .index_container {
-        // background-color: aliceblue;
         display: flex;
         flex-wrap: nowrap;
         overflow: hidden;
@@ -230,12 +206,10 @@ export const PageCommentPaginationBarContainer = styled(
     span {
         display: inline-block;
         overflow-wrap: break-word;
-        // border: 1px black solid;
         margin-left: .2em;
         padding: .3em .3em .3em .3em;
         line-height: 1em;
         cursor: pointer;
-        // background-color: ${theme.colors.border_grey};
         border-radius: .2em;
         &:hover{
             color: ${theme.colors.clay_blue};
@@ -244,11 +218,8 @@ export const PageCommentPaginationBarContainer = styled(
         &.selected {
             font-weight: bold;
             color: ${theme.colors.clay_blue}
-            // background-color: aliceblue;
-            // background: transparent;
         }
         &.index {
-            // background-color: cornflowerblue;
         }
     }
     span.first {

@@ -10,7 +10,7 @@ export default (
 ) => {
     switch (action.type) {
         case ActionTypes.SET_MESSAGE:
-            return { message: action.payload };
+            return { message: action.payload.message };
         case ActionTypes.CLEAR_MESSAGE:
             return { message: '' };
         default:

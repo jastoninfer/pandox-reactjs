@@ -43,15 +43,12 @@ const Login = () => {
 
     const handleLogin = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
-        // console.log('try to log in');
         setLoading(true);
         const userLogin: UserLogin = { username, password };
         dispatch(login(userLogin))
             .then(() => {
-                // 跳转前清除message
                 dispatch(clearMessage());
                 navigate('/');
-                // window.location.reload(); // 重新加载当前页面, 类似于刷新
             })
             .catch((err) => {
                 setLoading(false);
@@ -60,7 +57,6 @@ const Login = () => {
 
     useEffect(() => {
         if (isLoggedin) {
-            // 重定向到主页
             navigate('/');
         }
     }, [isLoggedin]);
@@ -91,7 +87,7 @@ const Login = () => {
                     <button disabled={loading} className="login-btn">
                         {(loading && 'loading...') || 'Log in'}
                     </button>
-                    {/* 登录成功不会有message */}
+                    {/* on success, no message */}
                     {message && (
                         <div role="alert" className="alert-fail">
                             {message}

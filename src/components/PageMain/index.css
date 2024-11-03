@@ -1,6 +1,5 @@
 p{
-    /* padding: .2rem; */
-    /* font-family: "Computer Modern Serif", serif; */
+
 }
 .BlogContentContainer {
     font-family: "Computer Modern Serif", serif;
@@ -19,42 +18,26 @@ img.resized {
     margin-right: auto;
     margin-top: 2em;
     margin-bottom: 2em;
-    /* border: #d5f4fd solid 2px; */
 }
 
 .BlogContentContainer code.codespan {
     background-color: #f5f4f4;
-    /* background-color: #fcfcfc; */
-    /* background-color: black;
-    background-color: gray;
-    background-color: lightgrey; */
     border-radius: 0.2em;
     padding: 0.1em;
-    /* font-weight: bold; */
-    /* color: rgb(92, 146, 246); */
     font-size: .9rem;
     color: #2566cf;
-    /* color: burlywood; */
-    /* box-shadow: 0 0 0 .1em #f5f4f4; */
 }
 
 .BlogContentContainer pre code.hljs {
     font-family: 'Source Code Pro', Monaco, 'Courier New', monospace;
-    /* background-color: #f2ecd4; */
-    /* background-color: rgb(162, 153, 157); */
-    /* background-color: #d3f0f9; */
     font-size: .9rem;
     max-height: 30rem;
     overflow-y: auto;
     overflow-x: auto;
     border-radius: .3em;
     max-width: 100%;
-    /* margin-left: auto; */
     margin-right: auto;
-    /* background-color: rgb(247, 247, 247); */
     border: #8a8a8a .5px solid;
-    /* box-shadow: 0 0 .2em .05em rgb(137, 137, 137); */
-    /*box-shadow:  [h-shadow] [v-shadow] [blur] [color] {inset}*/
     span.hljs-title{
         font-weight: bold;
     }
@@ -62,34 +45,14 @@ img.resized {
 
 .BlogContentContainer blockquote {
     font-style: italic;
-    /* background-color: #d5f4fd; */
-    /* border-color: #d5f4fd; */
-    /* border: #d5f4fd solid .5em;
-    border: #53d5f8 solid .1em; */
-    /* border: #50c1e0 solid .4em; */
-    /* background-color: #d5f4fd; */
-    /* background-color: ; */
-    /* background-color: rgba(231, 229, 229, 0.473); */
     border-radius: .7em;
     padding: .7em;
     line-height: 1.5em;
-    /* background: linear-gradient(to right, rgb(246, 244, 244), #d5f4fd);
-    background: linear-gradient(to right,#d5f4fd, white);
-    background: linear-gradient(to bottom,#d5f4fd, white);
-    background: linear-gradient(to bottom right, white, #d5f4fd);
-    background: linear-gradient(to top left, white, #e4f9ff); */
     color: rgb(62, 62, 62);
     border: 1px darkgrey solid;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
     'Helvetica Neue', sans-serif;
-    /* font-family: "Computer Modern Serif", serif !important; */
-    /* color: rgb(34, 184, 243); */
-    /* color:gray; */
-    /* background-color: aliceblue; */
-    /* background-color:darksalmon; */
-    /* color: white; */
-    /* border-left: .2em solid coral; */
 }
 
 blockquote::before {
@@ -105,9 +68,6 @@ blockquote::before {
 }
 
 #BlogContent a {
-    /* text-decoration: none; */
-    /* color: #467fdb; */
-    /* color: burlywood; */
     color: cadetblue;
 }
 

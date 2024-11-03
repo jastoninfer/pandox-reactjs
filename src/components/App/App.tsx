@@ -18,32 +18,22 @@ import { SettingsAccount } from '../Settings/Settings';
 import Notifications from '../Notifications/Notifications';
 import { NotificationsResponses } from '../Notifications/Notifications';
 import { SearchPages, SearchUsers } from '../Search/Search';
-import { useCallback, useEffect, useState } from 'react';
+import ScrollToTop from 'components/ScrollToTop/ScrollToTop';
+// import { useCallback, useEffect, useState } from 'react';
 
-import '../../index.css';
+// import '../../index.css';
 import 'katex/dist/katex.css';
 
 // import { useBackgroundTasks } from '../../backendTasks';
 
-// export const __handleOverlayClick = () => {
-//     // disable overlay
-//     // setShowSearchBox(false);
-//     document.body.classList.remove('overlay-active');
-// }
-
 const App = () => {
     // useBackgroundTasks();
-
-    // const [navExt, setNavExt] = useState(null);
-
-    // useEffect(() => {
-    //     console.log(navExt);
-    // }, [navExt]);
 
     return (
         <div className="App">
             {/* <div className="overlay overlay-dark"/> */}
             {/* </div> */}
+            <ScrollToTop/>
             <Routes>
                 <Route index element={<PageIntro />} />
                 <Route path="me" element={<Me />}></Route>

@@ -91,7 +91,6 @@ export const SettingsContainer = styled.div`
                 }
                 div.popup-window-avatarinfo-container {
                     width: 100%;
-                    // background-color: red;
                     display: flex;
                     flex-direction: column;
                     gap: 0.5em;
@@ -117,7 +116,6 @@ export const SettingsContainer = styled.div`
                         div.popup-window-avatarrow-right-container {
                             flex: 1;
                             margin-left: 1.5em;
-                            // background-color: blue;
                             display: flex;
                             justify-content: space-evenly;
                             flex-direction: column;

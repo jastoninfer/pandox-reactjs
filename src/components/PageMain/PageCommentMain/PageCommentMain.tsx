@@ -141,11 +141,6 @@ const PageCommentItem: React.FC<PageCommentItemProps> = ({
         setHideComments(false);
     };
 
-    const handleDeleteThread = () => {
-        // console.log(user);
-        // console.log(thread);
-    };
-
     const handleDeleteCommentOnClick = (commentId: number) => async () => {
         try {
             await CommentService.deleteCommentById(commentId);
@@ -193,8 +188,6 @@ const PageCommentItem: React.FC<PageCommentItemProps> = ({
             }
             return;
             // 可能会出现401错误
-            // console.log(err.response);
-            // console.log(err.message);
         }
         // 关闭ReplyBox框
         setActiveReplyBoxThreadIdx(-1);
@@ -279,7 +272,7 @@ const PageCommentItem: React.FC<PageCommentItemProps> = ({
                                     <i className="fa-regular fa-eye-slash"></i>
                                 </a>
                             ))}
-                        {/* 如果是thread的所有者，且处于登录状态应该允许删除 */}
+
                         {isLoggedin &&
                             user &&
                             user.username === thread.author && (
@@ -292,7 +285,7 @@ const PageCommentItem: React.FC<PageCommentItemProps> = ({
                                     <i className="fa-solid fa-trash"></i>
                                 </a>
                             )}
-                        {/* 如果是已登录状态，应该允许回复 */}
+
                         {isLoggedin && (
                             <a
                                 onClick={handleReplyButtonOnClick(
@@ -380,14 +373,13 @@ export const PaginationNavBar: React.FC<PaginationNavBarProps> = ({
         const numLimit: number = 9;
         let _begin: number = curPage;
         let _end: number = curPage;
-        // console.log('remain,', remainWidth);
+
         for (let offset: number = 1; offset <= numLimit - 1; offset++) {
             const _left: number = -offset + curPage;
             const _right: number = offset + curPage;
             if (_left >= 1) {
                 remainWidth -=
                     (-1 + Math.abs(_left).toString().length) * coef + 1;
-                // remainWidth -= 1;
                 if (remainWidth >= 0) {
                     _begin = _left;
                 } else {
@@ -397,7 +389,6 @@ export const PaginationNavBar: React.FC<PaginationNavBarProps> = ({
             if (_right <= totalPages) {
                 remainWidth -=
                     (-1 + Math.abs(_right).toString().length) * coef + 1;
-                // remainWidth -= 1;
                 if (remainWidth >= 0) {
                     _end = _right;
                 } else {
@@ -415,9 +406,6 @@ export const PaginationNavBar: React.FC<PaginationNavBarProps> = ({
     const handlePaginationIndexClick = (
         e: React.MouseEvent<HTMLSpanElement>
     ) => {
-        // console.log(e.target.innerText);
-
-        // scoll 评论区到屏幕上方
 
         let targetIdx: string = '1';
         const target = e.target as HTMLSpanElement;
@@ -490,7 +478,7 @@ const PageCommentMain = React.forwardRef<
     PageMainCommentForwardRef,
     PageCommentMainProps
 >((props, ref) => {
-    const pageId: number | undefined = props.pageId; // 永远只记加载/处理第一篇博客下的threads
+    const pageId: number | undefined = props.pageId;
 
     const [threads, setThreads] = useState<PaginatedThreadsResData | null>(
         null
@@ -528,12 +516,10 @@ const PageCommentMain = React.forwardRef<
     const handleMainReplyCancelOnClick = (
         e: React.MouseEvent<HTMLButtonElement>
     ) => {
-        // 关闭输入框
         setIsMainReplyBoxOpen(false);
     };
 
     const handleMainReplySubmitOnClick = async () => {
-        // 创建一个新的thread
         try {
             if (pageId) {
                 await ThreadService.createThread(pageId, {
@@ -542,17 +528,13 @@ const PageCommentMain = React.forwardRef<
             }
         } catch (err: any) {
             if (err.response && err.response.status === 401) {
-                // 引导用户去登录
-                // console.log('401');
                 navigate('/login');
             } else {
                 console.log(err.message || 'Error while creating thread.');
             }
             return;
         }
-        // 关闭回复框
         setIsMainReplyBoxOpen(false);
-        // 刷新threads, 定位到最后一页
         await getThreads(-1);
     };
 
@@ -611,7 +593,6 @@ const PageCommentMain = React.forwardRef<
 
     return (
         <S.BlogCommentBody id="BlogCommentBody">
-            {/* 展示若干threads */}
             {((threads && threads.threads) || []).map((thread) => (
                 <PageCommentItem
                     key={thread.id}

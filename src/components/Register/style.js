@@ -36,9 +36,7 @@ export const RegisterContainer = styled.div`
                 // border-radius: .1em;
                 outline: none;
                 &:focus {
-                    border-bottom: 0.5px solid transparent;
-                    border-radius: 0.2em;
-                    outline: 1px solid ${theme.colors.cadetblue};
+                    border-bottom: 1px solid ${theme.colors.dark_grey};
                 }
             }
         }
@@ -53,20 +51,16 @@ export const RegisterContainer = styled.div`
             font-size: 0.9em;
             color: ${theme.colors.grey_white};
             font-weight: bold;
-            background-color: ${theme.colors.clay_blue};
+            background-color: #e2912a;
             &:hover {
-                background-color: ${theme.colors.clay_blue_dark};
+                background-color: #de8a1e;
             }
         }
     }
     div.alert-success,
     div.alert-fail {
-        // background-color: green;
         font-size: 0.9em;
         padding: 0.3em;
-        // padding-left: 4em;
-        // padding-right: 4em;
-        // width: 100%;
     }
     div.alert-fail {
         color: ${theme.colors.warning_red};
@@ -74,6 +68,6 @@ export const RegisterContainer = styled.div`
     div.alert-success {
         wdith: 100%;
         margin-top: 3em;
-        color: ${theme.colors.cadetblue};
+        color: ${theme.colors.burlywood};
     }
 `;
