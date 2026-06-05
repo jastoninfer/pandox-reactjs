@@ -4,7 +4,7 @@ import type { MessageState } from 'types/states';
 
 const initState: MessageState = { message: '' };
 
-export default (
+const messageReducer = (
     state: MessageState = initState,
     action: A_SetMessage | A_ClearMessage
 ) => {
@@ -17,3 +17,5 @@ export default (
             return state;
     }
 };
+
+export default messageReducer;

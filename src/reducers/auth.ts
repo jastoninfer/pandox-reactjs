@@ -23,7 +23,7 @@ const initState: AuthState = user
     ? { isLoggedin: true, user }
     : { isLoggedin: false, user: null };
 
-export default (
+const authReducer = (
     state: AuthState = initState,
     action:
         | A_RegisterSuccess
@@ -50,3 +50,5 @@ export default (
             return state;
     }
 };
+
+export default authReducer;

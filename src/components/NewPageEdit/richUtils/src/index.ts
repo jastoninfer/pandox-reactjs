@@ -11,7 +11,7 @@ import type { Config } from '@markdoc/markdoc';
 
 export type MarkdocPluginConfig = { lezer?: any, markdoc: Config };
 
-export default function (config: MarkdocPluginConfig) {
+function createMarkdocPlugin(config: MarkdocPluginConfig) {
   const mergedConfig = {
     ...config.lezer ?? [],
     // extensions: [...config.lezer?.extensions ?? []]
@@ -35,3 +35,5 @@ export default function (config: MarkdocPluginConfig) {
     }
   });
 }
+
+export default createMarkdocPlugin;

@@ -240,7 +240,7 @@ function replaceBlocks(state: EditorState, config: Config, from?: number, to?: n
   
 }
 
-export default function (config: Config) {
+function renderBlock(config: Config) {
   return StateField.define<DecorationSet>({
     create(state) {
       return RangeSet.of(replaceBlocks(state, config), true);
@@ -255,3 +255,5 @@ export default function (config: Config) {
     },
   });
 }
+
+export default renderBlock;
