@@ -1,22 +1,26 @@
 # Pandox Blog Platform Frontend
 
-Portfolio case study for a full-stack technical blogging platform. The frontend is a React/TypeScript single-page application for publishing long-form technical articles with Markdown, math notation, code highlighting, user profiles, comments, likes, follows, and search.
+Frontend for Pandox, a full-stack technical blogging platform. It is a React/TypeScript single-page app where users can write Markdown articles, read technical posts, manage profiles, comment, like, follow other users, and search content.
 
-## Reviewer Snapshot
+## Project Summary
 
 | Area | Summary |
 | --- | --- |
 | Product | Technical blogging platform for long-form programming and machine-learning notes |
-| Frontend scope | React SPA, routed pages, authenticated flows, editor, article reader, profile, search, settings, notifications |
-| Backend dependency | Node/Express API with MySQL, Redis, image storage, and Elasticsearch search |
-| Original deployment | Vercel frontend + Oracle Cloud VPS backend |
-| Current demo status | The Oracle VPS is offline, so the public Vercel URL may show only the static frontend shell. Screenshots below are captured from a local seeded environment with MySQL and Redis running. |
+| Frontend scope | React app with routes for home, profiles, article pages, editor, search, settings, login, and registration |
+| Backend | Node/Express API with MySQL, Redis, image storage, and Elasticsearch search |
+| Public frontend URL | `https://pandox-reactjs.vercel.app/` |
+| Demo status | The Oracle VPS is offline. The public Vercel URL may load the frontend only, without live backend data. The screenshots below were captured from a local seeded setup with MySQL and Redis running. |
 
 ## Product Screenshots
 
-| Home feed with seeded recommendations | Article reader with math rendering |
+| Landing view | Recommended feed |
 | --- | --- |
-| ![Home page](docs/screenshots/home.png) | ![Article detail](docs/screenshots/article.png) |
+| ![Home page](docs/screenshots/home.png) | ![Recommended feed](docs/screenshots/feed-recommendations.png) |
+
+| Article reader with math rendering | Threaded comments |
+| --- | --- |
+| ![Article detail](docs/screenshots/article.png) | ![Comment discussion](docs/screenshots/comments.png) |
 
 | User profile | Existing article in Markdown editor |
 | --- | --- |
@@ -24,21 +28,21 @@ Portfolio case study for a full-stack technical blogging platform. The frontend 
 
 ## Engineering Highlights
 
-- Built a multi-page React SPA with nested React Router routes for home, profiles, article detail, editor, search, settings, notifications, login, and registration.
-- Implemented a technical-writing workflow around Markdown authoring, preview mode, CodeMirror editing, KaTeX formulas, syntax highlighting, table support, image resizing, and generated table of contents.
-- Created a typed API boundary with Axios service modules and Redux/Redux Thunk authentication state.
-- Supported authenticated author actions including page creation, page updates, visibility status, image-backed articles, and profile-aware navigation.
-- Integrated with backend capabilities for JWT auth, MySQL-backed content, Redis token invalidation, file uploads, and Elasticsearch search.
+- Built a routed React app with pages for browsing posts, reading articles, editing articles, user profiles, search, settings, login, and registration.
+- Added a Markdown editor with CodeMirror, preview mode, KaTeX formulas, syntax highlighting, tables, image rendering, and a generated table of contents.
+- Organized backend calls into Axios service files with TypeScript response types.
+- Used Redux and Redux Thunk to keep login state available across the app.
+- Added logged-in author actions such as creating posts, editing posts, setting visibility, uploading images, and navigating from profile pages to articles.
+- Connected the frontend to backend APIs for auth, users, pages, comments, images, likes, follows, and search.
 
-## Skills Demonstrated
+## Skills Shown
 
 | Skill | Evidence in this project |
 | --- | --- |
-| Frontend architecture | Route hierarchy, reusable service layer, Redux auth state, protected author workflows |
-| Rich content UX | Markdown editor, live preview route, KaTeX, syntax highlighting, image rendering, TOC generation |
-| Full-stack integration | Axios clients consume REST APIs for auth, users, pages, comments, images, likes, follows, and search |
-| Product thinking | A complete author-reader loop: profile, publish, browse, read, comment, like, follow, and search |
-| Legacy maintenance | README refresh, screenshots from local data, environment sanitization, deployment-status clarification |
+| React app structure | Nested React Router routes, reusable components, and separate service files |
+| Technical writing UI | Markdown editing, preview, KaTeX, code highlighting, images, and table of contents |
+| API integration | Axios clients for auth, users, pages, comments, images, likes, follows, and search |
+| User flows | A complete reader-author loop: publish, browse, read, comment, like, follow, and search |
 
 ## Tech Stack
 
@@ -48,16 +52,10 @@ Portfolio case study for a full-stack technical blogging platform. The frontend 
 | State/API | Redux, Redux Thunk, Axios |
 | Styling | styled-components, Sass, CSS |
 | Editor/rendering | CodeMirror 6, Marked, KaTeX, highlight.js, Lezer Markdown |
-| Platform integration | Express API, JWT auth, WebSocket endpoint |
+| Backend integration | Express API, JWT auth, WebSocket endpoint |
 | Data/search | MySQL, Redis, Elasticsearch |
 
-## Reviewer Notes
-
-The original public frontend URL is `https://pandox-reactjs.vercel.app/`. Because the Oracle VPS backend is no longer active, that URL may not demonstrate the interactive data flows. The screenshots in this README document the locally reproducible state after the backend seed scripts load demo users, articles, comments, keywords, and images.
-
-Elasticsearch support is implemented through the backend search routes, but a local review does not require ES unless search results need to be reproduced. Core browsing, login, profile, article, image, and editor flows work with MySQL and Redis.
-
-## Local Review Appendix
+## Run Locally
 
 ```bash
 npm install
@@ -65,7 +63,7 @@ cp .env.example .env
 npm run start:dev
 ```
 
-Expected frontend environment:
+Expected frontend `.env`:
 
 ```bash
 REACT_APP_BASE_URL_DEV=http://localhost:8080
@@ -80,5 +78,3 @@ Seeded login accounts:
 | `pandoxone` | `1234` |
 | `jzhang` | `1234` |
 | `mshao` | `1234` |
-
-Repository hygiene note: real `.env` files and local virtual environments are ignored. Use `.env.example` for review setup.
