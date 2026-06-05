@@ -80,7 +80,7 @@ const deletePageById = (pageId: number): Promise<_MessageResData> => {
         });
 };
 
-export default {
+const PageService = {
     getPageById,
     createPage,
     getRecommendedPages,
@@ -88,3 +88,5 @@ export default {
     updatePageById,
     deletePageById,
 };
+
+export default PageService;

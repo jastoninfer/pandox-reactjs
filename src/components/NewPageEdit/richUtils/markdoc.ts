@@ -11,7 +11,7 @@ markdoc.transformer.findSchema = (node, config) => {
     config?.nodes?.[node.type];
 }
 
-export default {
+const markdocConfig = {
   tags: {
     $$fallback: {
       transform(node, config) {
@@ -62,3 +62,5 @@ export default {
     }
   }
 } as Config;
+
+export default markdocConfig;

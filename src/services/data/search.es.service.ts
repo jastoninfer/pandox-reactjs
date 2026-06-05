@@ -30,7 +30,9 @@ const searchPage = (
         });
 };
 
-export default {
+const SearchEService = {
     searchPage,
     searchUser,
 };
+
+export default SearchEService;

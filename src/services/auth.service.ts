@@ -43,8 +43,10 @@ const logout = (): Promise<LogoutResData> => {
     });
 };
 
-export default {
+const AuthService = {
     register,
     login,
     logout,
 };
+
+export default AuthService;

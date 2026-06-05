@@ -22,7 +22,9 @@ const updateProfile = (newProfile: UserCustomProfile): Promise<User> => {
         });
 };
 
-export default {
+const UserService = {
     viewProfile,
     updateProfile,
 };
+
+export default UserService;

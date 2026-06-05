@@ -41,8 +41,10 @@ const deleteCommentById = (commentId:number):Promise<_MessageResData> => {
     });
 };
 
-export default {
+const CommentService = {
     createComment,
     getCommentsByThreadId,
     deleteCommentById,
 };
+
+export default CommentService;

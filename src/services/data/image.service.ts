@@ -41,9 +41,11 @@ const deleteImageById = (imageId: string): Promise<_MessageResData> => {
         });
 };
 
-export default {
+const ImageService = {
     addImage,
     getImageById,
     getAllImages,
     deleteImageById,
 };
+
+export default ImageService;

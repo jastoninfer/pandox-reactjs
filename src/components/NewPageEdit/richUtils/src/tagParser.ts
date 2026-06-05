@@ -1,7 +1,7 @@
 import { tags as t } from '@lezer/highlight'
 import type { MarkdownConfig } from '@lezer/markdown';
 
-export default {
+const tagParserConfig = {
   defineNodes: [
     { name: 'MarkdocTag', block: true, style: t.meta },
     // { name: 'BlockLatexTag', block: true, style: t.meta},
@@ -131,3 +131,5 @@ export default {
     },
   }]
 } as MarkdownConfig;
+
+export default tagParserConfig;

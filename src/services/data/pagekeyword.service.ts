@@ -42,8 +42,10 @@ const deleteKeywordByPageId = (
         });
 };
 
-export default {
+const PageKeywordService = {
     getKeywordsByPageId,
     createKeyword,
     deleteKeywordByPageId,
 };
+
+export default PageKeywordService;

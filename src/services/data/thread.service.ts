@@ -42,8 +42,10 @@ const deleteThreadById = (threadId: number): Promise<_MessageResData> => {
         });
 };
 
-export default {
+const ThreadService = {
     createThread,
     getThreadsByPageId,
     deleteThreadById,
 };
+
+export default ThreadService;
